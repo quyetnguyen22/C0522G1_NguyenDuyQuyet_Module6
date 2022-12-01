@@ -1,0 +1,233 @@
+
+<title>Quản lý phim | Thêm mới</title>
+
+<body>
+<div class="mt-3" id="head"><h1 class="text-light">THÊM MỚI PHIM</h1></div>
+<form [formGroup]="formAddMovie">
+  <div class="row">
+    <div class="col-lg-6">
+      <label for="filmName"><b>Tên Phim</b><span>*</span></label>
+      <input formControlName="name" type="text" id="filmName">
+    </div>
+    <div class="col-lg-6">
+      <label for="actor"><b>Diễn Viên</b><span>*</span></label>
+      <input formControlName="actor" type="text" id="actor">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <label for="dateFrom"><b>Từ Ngày</b><span>*</span></label>
+      <input formControlName="startDay" type="date" id="dateFrom">
+    </div>
+
+    <div class="col-lg-6">
+      <label for="dateTo"><b>Đến Ngày</b><span>*</span></label>
+      <input formControlName="endDay" type="date" id="dateTo">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <label for="filmProducer"><b>Hãng Phim</b><span>*</span></label>
+      <input formControlName="filmStudio" type="text" id="filmProducer">
+    </div>
+    <div class="col-lg-6">
+      <label for="filmTime"><b>Thời Lượng</b><span>*</span></label>
+      <input formControlName="filmTime" type="text" id="filmTime">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6">
+      <label for="director"><b>Đạo Diễn</b><span>*</span></label>
+      <input formControlName="director" type="text" id="director">
+    </div>
+    <div class="col-lg-6">
+      <label for="filmTrailer"><b>Trailer</b><span>*</span></label>
+      <input formControlName="trailer" type="text" id="filmTrailer">
+    </div>
+  </div>
+  <div formArrayName="showTime">
+    <div *ngFor="let _ of this.formAddShowTime.controls" index as i>
+      <div [formGroupName]="i">
+        <div class="row">
+          <div class="col-lg-6">
+            <label for="filmRoom"><b>Phòng Chiếu</b><span>*</span></label>
+            <select formControlName="room" id="filmRoom" class="form-select">
+              <option value="">Chọn phòng chiếu</option>
+              <option *ngFor="let room of roomList" [ngValue]="room">{{room.name}}</option>
+            </select>
+          </div>
+          <div class="col-lg-6">
+            <label for="filmRoom"><b>Ngày Chiếu</b><span>*</span></label>
+            <input formControlName="dateProjection" type="date" id="dateShow">
+          </div>
+        </div>
+        <div class="row selectedTime">
+          <div class="col-lg-6">
+            <label><b>Giờ Chiếu</b><span>*</span></label>
+            <select formControlName="time" id="time" style="border-radius: 5px" class="form-select">
+              <option value="">Chọn giờ chiếu</option>
+              <option *ngFor="let time of timeList" [ngValue]="time">{{time.startTime}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <label><br>
+        <button class="btn-primary time text-center" style="border-radius: 5px">Thêm lịch chiếu</button>
+      </label>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-lg-6">
+      <label for="director" class="mb-1"><b>Phiên Bản</b><span>*</span></label>
+      <div>
+        <div class="form-check form-check-inline">
+          <input value="2d" name="2d3d" type="radio" id="filmType2d"/>
+          <label class="form-check-label" for="filmType2d">
+            2D
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input value="3d" name="2d3d" type="radio" id="filmType3d"/>
+          <label class="form-check-label" for="filmType3d">
+            3D
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <label for="filmImg" class="mb-1"><b>Hình Ảnh</b><span>*</span></label>
+      <input type="file" id="filmImg">
+    </div>
+  </div>
+  <div class="row">
+    <label><b>Thể Loại</b><span>*</span></label>
+    <div class="col-lg-3">
+      <div class="form-check form-check-inline">
+        <input value="action" type="checkbox" id="action"/>
+        <label class="form-check-label" for="action">
+          Hành động
+        </label>
+      </div>
+      <div class="form-check">
+        <input value="comedy" type="checkbox" id="comedy"/>
+        <label class="form-check-label" for="comedy">
+          Hài hước
+        </label>
+      </div>
+      <div class="form-check">
+        <input value="comedy" type="checkbox" id="romantic"/>
+        <label class="form-check-label" for="romantic">
+          Lãng mạn
+        </label>
+      </div>
+      <div class="form-check">
+        <input value="comedy" type="checkbox" id="love"/>
+        <label class="form-check-label" for="love">
+          Tình cảm
+        </label>
+      </div>
+    </div>
+    <div class="col-lg-3">
+      <div class="form-check form-check-inline">
+        <input value="fiction" type="checkbox" id="fiction"/>
+        <label class="form-check-label" for="fiction">
+          Viễn tượng
+        </label>
+      </div>
+      <div class="form-check">
+        <input value="war" type="checkbox" id="war"/>
+        <label class="form-check-label" for="war">
+          Chiến tranh
+        </label>
+      </div>
+      <div class="form-check">
+        <input value="hero" type="checkbox" id="hero"/>
+        <label class="form-check-label" for="hero">
+          Kiếm hiệp
+        </label>
+      </div>
+      <div class="form-check">
+        <input value="music" type="checkbox" id="music"/>
+        <label class="form-check-label" for="music">
+          Âm nhạc
+        </label>
+      </div>
+    </div>
+    <div class="col-lg-3">
+      <div class="form-check form-check-inline">
+        <input value="cartoon" type="checkbox" id="cartoon"/>
+        <label class="form-check-label" for="cartoon">
+          Hoạt hình
+        </label>
+      </div>
+      <div class="form-check">
+        <input value="horror" type="checkbox" id="horror"/>
+        <label class="form-check-label" for="horror">
+          Kinh dị
+        </label>
+      </div>
+      <div class="form-check">
+        <input value="adventure" type="checkbox" id="adventure"/>
+        <label class="form-check-label" for="adventure">
+          Phiêu lưu
+        </label>
+      </div>
+    </div>
+    <div class="col-lg-3">
+      <div class="form-check form-check-inline">
+        <input value="kongfu" type="checkbox" id="kongfu"/>
+        <label class="form-check-label" for="kongfu">
+          Võ thuật
+        </label>
+      </div>
+      <div class="form-check">
+        <input value="thriller" type="checkbox" id="thriller"/>
+        <label class="form-check-label" for="thriller">
+          Kinh điển
+        </label>
+      </div>
+      <div class="form-check">
+        <input value="psychology" type="checkbox" id="psychology"/>
+        <label class="form-check-label" for="psychology">
+          Tâm lý
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <label for="filmContent"><b>Nội Dung</b></label>
+    <textarea id="filmContent"></textarea>
+  </div>
+  <div class="row text-center wrapCss">
+    <button class="button btnGreen me-4">Lưu</button>
+    <button class="button btnBlue">Quay lại</button>
+  </div>
+</form>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script>
+  $(".time").on('click', function (e) {
+    e.preventDefault();
+    let t = $('#time').val()
+    let elem = $(".selectedTime").parent().find('input[name=getTime\\[\\]]');
+    console.log(elem.val())
+    if (elem.val() !== '') {
+      t = ',' + t
+    }
+    elem.val(elem.val() + t);
+  });
+</script>
+<!--<script>-->
+<!--    $(function () {-->
+<!--        $('.selectedTime').hide();-->
+<!--        $('.takingTime').on('click', function () {-->
+<!--            $('.selectedTime').show();-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
+</body>
+

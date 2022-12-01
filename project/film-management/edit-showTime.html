@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý phim | Thêm mới</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<div class="text-center mt-3 w-25" id="head"><h1 class="m-0 text-light">THÊM SUẤT CHIẾU</h1></div>
+<form class="shadow w-25">
+
+    <label for="filmName"><b>Tên phim</b><span class="requestInput">*</span></label>
+    <input id="filmName" disabled class="form-control">
+
+    <label for="filmRoom"><b>Phòng chiếu</b><span class="requestInput">*</span></label>
+    <select id="filmRoom" class="form-select">
+        <option value="">Chọn phòng chiếu</option>
+        <option value="">PC01</option>
+        <option value="">PC02</option>
+        <option value="">PC03</option>
+    </select>
+
+    <label for="dateShow"><b>Ngày chiếu</b><span class="requestInput">*</span></label>
+    <input id="dateShow" type="date" class="form-control">
+
+    <label><b>Giờ chiếu</b><span class="requestInput">*</span></label>
+    <select id="time" style="border-radius: 5px" class="form-select">
+        <option value="">Chọn giờ chiếu</option>
+        <option value="20:00">20:00</option>
+        <option value="21:00">21:00</option>
+        <option value="23:00">23:00</option>
+    </select>
+    <input class="form-control" name="getTime[]"/>
+    <button class="btn-primary time text-center" style="border-radius: 5px">Thêm</button>
+    <div class="row text-center wrapCss">
+        <div class="col-6">
+            <button class="button btnGreen">Tiếp tục</button>
+        </div>
+        <div class="col-6">
+            <button class="button btnBlue">Quay lại</button>
+        </div>
+    </div>
+</form>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script>
+    $(".time").on('click', function (e) {
+        e.preventDefault();
+        let elem = $(this).parent().find('input[name=getTime\\[\\]]');
+        let t = $('#time').val()
+        if (elem.val() !== '') {
+            t = ',' + t
+        }
+        elem.val(elem.val() + t);
+    });
+</script>
+</body>
+</html>
+

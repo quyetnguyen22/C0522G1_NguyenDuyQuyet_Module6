@@ -1,0 +1,62 @@
+<title>Phỏng vấn | Lên lịch</title>
+<body>
+<div class="container col-12">
+  <h3 class="text-center mt-3" style="color: white">Create An Interview</h3>
+  <h5 class="text-center" style="color: blue"></h5>
+</div>
+
+<div class="container border border-primary w-25 mb-5">
+  <form [formGroup]="formAdd" (ngSubmit)="createAnInterview()" class="g-3" method="post">
+
+    <div class="col-12">
+      <label class="form-label">Ứng viên:</label>
+      <select formControlName="candidateDto" class="form-select">
+        <option value="null">Chọn ứng viên</option>
+        <option *ngFor="let can of candidates" [ngValue]="can">{{can.name}}</option>
+      </select>
+    </div>
+
+    <div class="col-12 mt-3">
+      <label for="inputIdNum" class="form-label">Số lần phỏng vấn:</label>
+      <input formControlName="times" readonly type="number" class="form-control" id="inputIdNum"/>
+      <p style="color: red"></p>
+    </div>
+
+    <div class="col-12">
+      <label for="inputName" class="form-label">Người phỏng vấn:</label>
+      <input formControlName="name" type="text" class="form-control" id="inputName"/>
+      <p style="color: red"></p>
+    </div>
+
+
+    <div class="col-12">
+      <label for="inputDate" class="form-label">Thời gian phỏng vấn:</label>
+      <input formControlName="schedule" type="date" class="form-control" id="inputDate"/>
+    </div>
+
+
+    <div class="col-12 mt-3">
+      <label for="results" class="form-label">Kết quả:</label>
+      <input formControlName="results" type="text" class="form-control" id="results"/>
+      <p style="color: red"></p>
+    </div>
+
+    <div class="col-12">
+      <label for="proposalSalary" class="form-label">Mức lương đề xuất:</label>
+      <input formControlName="proposalSalary" type="text" class="form-control" id="proposalSalary"/>
+      <p style="color: red"></p>
+    </div>
+
+    <div class="col-12">
+      <label for="comment" class="form-label">Nhận xét:</label>
+      <textarea formControlName="comment" type="text" class="form-control" id="comment"></textarea>
+    </div>
+
+
+    <div class="col-12 mt-3 text-center mb-3">
+      <button type="submit" class="btn btn-primary">Lưu</button>
+      <a routerLink="/" class="btn btn-secondary mx-3 text-white text-decoration-none">Quay lại</a>
+    </div>
+  </form>
+</div>
+</body>
