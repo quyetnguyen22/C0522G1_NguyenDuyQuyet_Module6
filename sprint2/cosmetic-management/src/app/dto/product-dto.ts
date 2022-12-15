@@ -13,5 +13,7 @@ export interface ProductDto {
   producer?: ProducerDto;
   brand?: BrandDto;
   cosmeticType?: CosmeticTypeDto;
+  imageLink?: string;
+  cosmeticId?: number;
 
 }

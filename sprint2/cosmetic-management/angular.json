@@ -38,7 +38,8 @@
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
-              "src/assets/detail.js"
+              "src/assets/detail.js",
+              "src/assets/cart.js"
             ]
           },
           "configurations": {

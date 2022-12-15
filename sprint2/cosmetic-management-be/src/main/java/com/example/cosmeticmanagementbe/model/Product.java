@@ -13,13 +13,13 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
     String name;
-    boolean isDeleted;
+    boolean isDeleted = false;
     String volume;
     double price;
     Integer gender;
 
     @Column(columnDefinition = "TEXT")
-    String description;
+    String descriptions;
     @Column(columnDefinition = "TEXT")
     String usingProduct;
 
@@ -89,12 +89,12 @@ public class Product {
         this.gender = gender;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDescriptions() {
+        return descriptions;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescriptions(String description) {
+        this.descriptions = descriptions;
     }
 
     public String getUsingProduct() {

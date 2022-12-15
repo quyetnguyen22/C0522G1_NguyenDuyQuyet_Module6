@@ -1,6 +1,8 @@
 package com.example.cosmeticmanagementbe.service.impl;
 
+import com.example.cosmeticmanagementbe.dto.IProductDto;
 import com.example.cosmeticmanagementbe.dto.ProductDto;
+import com.example.cosmeticmanagementbe.model.Product;
 import com.example.cosmeticmanagementbe.repository.IProductRepository;
 import com.example.cosmeticmanagementbe.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +18,12 @@ public class ProductService implements IProductService {
 
 
     @Override
-    public Page<ProductDto> getListProduct(Pageable pageable) {
-        return productRepository.getListProduct(pageable);
+    public Page<IProductDto> getListProduct(String name, Pageable pageable) {
+        return productRepository.getListProduct(name, pageable);
+    }
+
+    @Override
+    public Page<IProductDto> getWomenProduct(String name, Pageable pageable) {
+        return productRepository.getWomenProduct(name, pageable);
     }
 }
