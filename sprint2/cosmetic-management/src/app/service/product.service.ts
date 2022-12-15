@@ -33,4 +33,8 @@ export class ProductService {
   updateCart(cartDto: CartDto): Observable<void> {
     return this.http.post<void>(URL_API + '/product/cart-update' + '?id=' + cartDto.id, cartDto);
   }
+
+  updateQty(cartDto: CartDto): Observable<void>{
+    return this.http.post<void>(URL_API + '/product/qty-update' + '?id=' + cartDto.id + '&qty=' + cartDto.qty, cartDto);
+  }
 }

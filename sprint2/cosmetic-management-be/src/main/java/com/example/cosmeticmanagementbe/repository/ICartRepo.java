@@ -41,4 +41,9 @@ public interface ICartRepo extends JpaRepository<Cart, Integer> {
 
     @Query(value = "select * from cart where id = :id", nativeQuery = true)
     ICartDto findByIdCart(@Param("id") Integer id);
+
+    @Modifying
+    @Query(value = "update cart set qty = :qty " +
+            "where id = :id and is_deleted = 0", nativeQuery = true)
+    void updateQty(Integer id, Integer qty);
 }

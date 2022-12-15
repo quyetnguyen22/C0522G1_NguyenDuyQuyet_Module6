@@ -36,6 +36,11 @@ public class CartService implements ICartService {
     }
 
     @Override
+    public void updateQty(Integer id, Integer qty) {
+        cartRepo.updateQty(id, qty);
+    }
+
+    @Override
     public ICartDto findById(Integer id) {
         return cartRepo.findByIdCart(id);
     }

@@ -14,7 +14,6 @@ export class CartComponent implements OnInit {
 
   cartList$: Observable<CartDto[]> | undefined;
   totalBill: number | undefined;
-  qtys: number | undefined;
   constructor(private productService: ProductService) {
   }
 
@@ -34,8 +33,14 @@ export class CartComponent implements OnInit {
   getTotalBill(){
     this.productService.getTotalBill().subscribe(value => {
       console.log(value)
-      this.qtys = value.qty;
       this.totalBill = value.totalBill;
     })
+  }
+
+  updateQty(cart: CartDto) {
+    console.log(cart)
+    this.productService.updateQty(cart).subscribe(value => {})
+    this.getAllInCart();
+    this.getTotalBill();
   }
 }

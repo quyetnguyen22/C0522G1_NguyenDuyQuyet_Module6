@@ -74,6 +74,15 @@ public class ProductRestController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @PostMapping("/qty-update")
+    public ResponseEntity<?> updateQty(@RequestParam Integer id,
+                                       @RequestParam Integer qty) {
+
+        cartService.updateQty(id, qty);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 //    @GetMapping
 //    public String test(Principal principal) {
 //        return "ok" + principal.getName();

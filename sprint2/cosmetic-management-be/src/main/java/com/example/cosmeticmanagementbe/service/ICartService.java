@@ -13,5 +13,7 @@ public interface ICartService {
     ITotalDto getTotalBill();
     void updateCart(Integer id);
     void insertToCart(Integer id);
+    void updateQty(Integer id, Integer qty);
     ICartDto findById(Integer id);
+
 }
