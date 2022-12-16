@@ -8,6 +8,7 @@ import {WomenComponent} from "./women/women.component";
 import {RatingModule} from "primeng/rating";
 import {InputNumberModule} from "primeng/inputnumber";
 import {FormsModule} from "@angular/forms";
+import {ToastModule} from "primeng/toast";
 
 
 @NgModule({
@@ -19,12 +20,13 @@ import {FormsModule} from "@angular/forms";
   exports: [
     DetailComponent
   ],
-  imports: [
-    CommonModule,
-    ProductRoutingModule,
-    RatingModule,
-    InputNumberModule,
-    FormsModule
-  ]
+    imports: [
+        CommonModule,
+        ProductRoutingModule,
+        RatingModule,
+        InputNumberModule,
+        FormsModule,
+        ToastModule
+    ]
 })
 export class ProductModule { }

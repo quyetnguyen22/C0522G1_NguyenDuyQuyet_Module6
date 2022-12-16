@@ -39,11 +39,16 @@ public interface ICartRepo extends JpaRepository<Cart, Integer> {
     @Query(value = "insert into cart(cosmetic_id, qty) values(:id, 1) ", nativeQuery = true)
     void insertToCart(@Param("id") Integer id);
 
-    @Query(value = "select * from cart where id = :id", nativeQuery = true)
-    ICartDto findByIdCart(@Param("id") Integer id);
+    @Query(value = "select * from cart where cosmetic_id = :id and is_deleted=0", nativeQuery = true)
+    ICartDto findByIdCosmetic(@Param("id") Integer id);
 
     @Modifying
     @Query(value = "update cart set qty = :qty " +
             "where id = :id and is_deleted = 0", nativeQuery = true)
     void updateQty(Integer id, Integer qty);
+
+    @Modifying
+    @Query(value = "update cart set is_deleted = 1 " +
+            "where id = :id", nativeQuery = true)
+    void deleteProduct(Integer id);
 }

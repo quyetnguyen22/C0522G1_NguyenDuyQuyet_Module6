@@ -103,22 +103,22 @@ is_deleted bit default 0
 -- is_deleted bit default 0
 -- );
 
-delimiter //
-create procedure  cart_info()
-begin 
-select (cart.qty*cosmetic.price) as sum_per_one, cart.id, cart.qty, cosmetic.name,
-cosmetic.price, images.image_link, sum(cart.qty*cosmetic.price) as total_bill
-from cart 
-join cosmetic on cart.cosmetic_id = cosmetic.id
-join images on cosmetic.id = images.cosmetic_id 
-where cart.is_deleted = 0
-group by cosmetic.id;
-select sum(cart.qty*cosmetic.price) as total_bill
-from cart 
-join cosmetic on cart.cosmetic_id = cosmetic.id
-where cart.is_deleted = 0;
-end //
-delimiter ;
+-- delimiter //
+-- create procedure  cart_info()
+-- begin 
+-- select (cart.qty*cosmetic.price) as sum_per_one, cart.id, cart.qty, cosmetic.name,
+-- cosmetic.price, images.image_link, sum(cart.qty*cosmetic.price) as total_bill
+-- from cart 
+-- join cosmetic on cart.cosmetic_id = cosmetic.id
+-- join images on cosmetic.id = images.cosmetic_id 
+-- where cart.is_deleted = 0
+-- group by cosmetic.id;
+-- select sum(cart.qty*cosmetic.price) as total_bill
+-- from cart 
+-- join cosmetic on cart.cosmetic_id = cosmetic.id
+-- where cart.is_deleted = 0;
+-- end //
+-- delimiter ;
 
 
 
@@ -193,15 +193,5 @@ join images on cosmetic.id = images.cosmetic_id
 where cosmetic.is_deleted = 0 and cosmetic.name like '%%' and cosmetic.gender = 2
 group by cosmetic.id;
 
--- select (cart.qty*cosmetic.price) as sum_per_one, cart.id, cart.qty, cosmetic.name,
--- cosmetic.price, images.image_link, sum(cart.qty*cosmetic.price) as total_bill
--- from cart 
--- join cosmetic on cart.cosmetic_id = cosmetic.id
--- join images on cosmetic.id = images.cosmetic_id 
--- where cart.is_deleted = 0
--- group by cosmetic.id;
-
-select sum(cart.qty*cosmetic.price) as total_bill
-from cart 
-join cosmetic on cart.cosmetic_id = cosmetic.id
-where cart.is_deleted = 0;
+update cart set qty = qty + 1 
+where id = 1 and is_deleted = 0

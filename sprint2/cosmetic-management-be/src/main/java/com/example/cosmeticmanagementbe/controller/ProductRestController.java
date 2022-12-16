@@ -68,17 +68,25 @@ public class ProductRestController {
         ICartDto cartDto = cartService.findById(id);
         if (cartDto == null) {
             cartService.insertToCart(id);
+            return new ResponseEntity<>(HttpStatus.OK);
         }
         cartService.updateCart(id);
-
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PostMapping("/qty-update")
+    @PatchMapping("/qty-update")
     public ResponseEntity<?> updateQty(@RequestParam Integer id,
                                        @RequestParam Integer qty) {
 
         cartService.updateQty(id, qty);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @DeleteMapping("/del-product")
+    public ResponseEntity<?> deleteProduct(@RequestParam Integer id) {
+
+        cartService.deleteProduct(id);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }

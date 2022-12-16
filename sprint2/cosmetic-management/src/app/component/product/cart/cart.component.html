@@ -1,3 +1,4 @@
+<p-toast></p-toast>
 <div>
   <div class="row cart-product-body">
     <div class="cart-product-pay">
@@ -21,7 +22,8 @@
                      style="width:70%;margin-left:20%;height: 80px;width: 100px"></td>
             <td class="text-left">
               <h4>{{product.name}}</h4>
-              <a href="#" style="color: #a50318">Remove</a>
+              <a (click)="removeProduct(product)" pButton pRipple class="cursor-pointer" style="color: #a50318">Remove</a>
+<!--              <button type="button" pButton pRipple class="btn btn-warning bold-btn" (click)="addToCart(item)">add to cart</button>-->
             </td>
             <td>{{product.price | number}}</td>
             <td>
@@ -30,14 +32,12 @@
               <!--              <input aria-label="quantity" class="input-qty" max="999" min="1" name="" type="number" [value]="product.qty">-->
               <!--              <input class="plus is-form" type="button" value="+">-->
               <!--            </div>-->
-              <div class="field col-12 md:col-3">
                 <p-inputNumber [(ngModel)]="product.qty" [showButtons]="true" buttonLayout="horizontal"
                                inputId="horizontal" spinnerMode="horizontal" [step]="1"
                                decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success"
                                incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [min]="1"
                                (click)="updateQty(product)">
                 </p-inputNumber>
-              </div>
             </td>
             <td>{{product.sumPerOne | number}}</td>
           </tr>
@@ -50,15 +50,16 @@
     <div class="col-lg-6">
       <div>
         <div class="form-floating">
-          <span><b>Ghi chú</b></span>
+          <span><b>Note:</b></span>
           <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
           <label for="floatingTextarea"></label>
         </div>
         <div class="mt-2">
-          <span><b>Giờ giao hàng:</b></span>
-          <span>Tùy thuộc địa chỉ giao hàng,THOR-BEER giao hàng
-          : *Khu Vực HCM, Hà Nội : trong vòng 24h. *Khu vực Đà Nẵng : trong vòng 2h-4h.
-        Quý khách tham khảo khu vực giao hàng tại đây<a href="#" style="color: #a50318">(Chính sách bán hàng)</a></span>
+          <span><b>Shipping deliver:</b></span>
+          <span>Depend on shipping address:</span> <br>
+          <span>*HCM, Hà Nội area : within 24h.</span> <br>
+          <span>*Đà Nẵng area : within 2h-4h</span>
+
         </div>
 
       </div>

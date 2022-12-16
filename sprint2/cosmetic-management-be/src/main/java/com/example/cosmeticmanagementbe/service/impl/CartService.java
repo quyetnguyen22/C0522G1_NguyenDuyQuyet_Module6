@@ -41,7 +41,12 @@ public class CartService implements ICartService {
     }
 
     @Override
+    public void deleteProduct(Integer id) {
+        cartRepo.deleteProduct(id);
+    }
+
+    @Override
     public ICartDto findById(Integer id) {
-        return cartRepo.findByIdCart(id);
+        return cartRepo.findByIdCosmetic(id);
     }
 }
