@@ -1,0 +1,104 @@
+{
+  "name": "cosmetic-management",
+  "projectType": "application",
+  "generators": {
+    "@schematics/angular:application": {
+      "strict": true
+    }
+  },
+  "sourceRoot": "apps/cosmetic-management/src",
+  "prefix": "app",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "options": {
+        "outputPath": "dist/apps/cosmetic-management",
+        "index": "apps/cosmetic-management/src/index.html",
+        "main": "apps/cosmetic-management/src/main.ts",
+        "polyfills": "apps/cosmetic-management/src/polyfills.ts",
+        "tsConfig": "apps/cosmetic-management/tsconfig.app.json",
+        "assets": [
+          "apps/cosmetic-management/src/favicon.ico",
+          "apps/cosmetic-management/src/assets"
+        ],
+        "styles": [
+          "apps/cosmetic-management/src/styles.css",
+          "node_modules/primeng/resources/themes/saga-blue/theme.css",
+          "node_modules/primeng/resources/primeng.min.css",
+          "node_modules/primeflex/primeflex.css",
+          "node_modules/primeicons/primeicons.css"
+        ],
+        "scripts": [
+          "node_modules/jquery/dist/jquery.min.js",
+          "apps/cosmetic-management/src/assets/detail.js",
+          "apps/cosmetic-management/src/assets/cart.js"
+        ]
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/cosmetic-management/src/environments/environment.ts",
+              "with": "apps/cosmetic-management/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "cosmetic-management:build:production"
+        },
+        "development": {
+          "browserTarget": "cosmetic-management:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "cosmetic-management:build"
+      }
+    },
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "main": "apps/cosmetic-management/src/test.ts",
+        "polyfills": "apps/cosmetic-management/src/polyfills.ts",
+        "tsConfig": "apps/cosmetic-management/tsconfig.spec.json",
+        "karmaConfig": "apps/cosmetic-management/karma.conf.js",
+        "assets": [
+          "apps/cosmetic-management/src/favicon.ico",
+          "apps/cosmetic-management/src/assets"
+        ],
+        "styles": ["apps/cosmetic-management/src/styles.css"],
+        "scripts": []
+      }
+    }
+  }
+}

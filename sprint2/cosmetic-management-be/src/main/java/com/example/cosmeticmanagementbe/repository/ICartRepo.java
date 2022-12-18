@@ -24,7 +24,7 @@ public interface ICartRepo extends JpaRepository<Cart, Integer> {
 
     List<ICartDto> getCartList();
 
-    @Query(value = "select sum(cart.qty*cosmetic.price) as totalBill " +
+    @Query(value = "select sum(cart.qty*cosmetic.price) as totalBill, count(cart.id) as countProduct " +
             "from cart " +
             "join cosmetic on cart.cosmetic_id = cosmetic.id " +
             "where cart.is_deleted = 0 ", nativeQuery = true)
@@ -32,7 +32,7 @@ public interface ICartRepo extends JpaRepository<Cart, Integer> {
 
     @Modifying
     @Query(value = "update cart set qty = qty + 1 " +
-            "where id = :id and is_deleted = 0", nativeQuery = true)
+            "where cart.cosmetic_id = :id and is_deleted = 0", nativeQuery = true)
     void updateCart(@Param("id") Integer id);
 
     @Modifying

@@ -1,6 +1,6 @@
 package com.example.cosmeticmanagementbe.repository;
 
-import com.example.cosmeticmanagementbe.domain.User;
+import com.example.cosmeticmanagementbe.account.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

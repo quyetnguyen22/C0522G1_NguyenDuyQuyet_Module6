@@ -1,7 +1,7 @@
 package com.example.cosmeticmanagementbe.service;
 
-import com.example.cosmeticmanagementbe.domain.Role;
-import com.example.cosmeticmanagementbe.domain.User;
+import com.example.cosmeticmanagementbe.account.Role;
+import com.example.cosmeticmanagementbe.account.User;
 
 import java.util.List;
 

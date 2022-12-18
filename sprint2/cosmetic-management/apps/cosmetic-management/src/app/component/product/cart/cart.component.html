@@ -1,0 +1,102 @@
+<p-toast></p-toast>
+<div>
+  <div class="row cart-product-body">
+    <div class="cart-product-pay">
+      <h2>COSMETIC CART</h2>
+      <hr style="color: #a50318" />
+      <div>
+        <table class="table text-center">
+          <thead class="text-center">
+            <tr>
+              <th></th>
+              <th class="text-left">Product detail</th>
+              <th>Unit price(VND)</th>
+              <th>Quantity</th>
+              <th>Total(VND)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of (cartList$ | async)!">
+              <td>
+                <img
+                  src="{{ product.image }}"
+                  id="expandedImg"
+                  style="
+                    width: 70%;
+                    margin-left: 20%;
+                    height: 80px;
+                    width: 100px;
+                  "
+                />
+              </td>
+              <td class="text-left">
+                <h4>{{ product.name }}</h4>
+                <a
+                  (click)="removeProduct(product)"
+                  pButton
+                  pRipple
+                  class="cursor-pointer"
+                  style="color: #a50318"
+                  >Remove</a
+                >
+                <!--              <button type="button" pButton pRipple class="btn btn-warning bold-btn" (click)="addToCart(item)">add to cart</button>-->
+              </td>
+              <td>{{ product.price | number }}</td>
+              <td>
+                <!--                          <div class="buttons_added">-->
+                <!--              <input class="minus is-form" type="button" value="-">-->
+                <!--              <input aria-label="quantity" class="input-qty" max="999" min="1" name="" type="number" [value]="product.qty">-->
+                <!--              <input class="plus is-form" type="button" value="+">-->
+                <!--            </div>-->
+                <p-inputNumber
+                  [(ngModel)]="product.qty"
+                  [showButtons]="true"
+                  buttonLayout="horizontal"
+                  inputId="horizontal"
+                  spinnerMode="horizontal"
+                  [step]="1"
+                  decrementButtonClass="p-button-danger"
+                  incrementButtonClass="p-button-success"
+                  incrementButtonIcon="pi pi-plus"
+                  decrementButtonIcon="pi pi-minus"
+                  [min]="1"
+                  (click)="updateQty(product)"
+                >
+                </p-inputNumber>
+              </td>
+              <td>{{ product.sumPerOne | number }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="row bill-pay-body">
+    <div class="col-lg-6">
+      <div>
+        <div class="form-floating">
+          <span><b>Note:</b></span>
+          <textarea
+            class="form-control"
+            placeholder="Leave a comment here"
+            id="floatingTextarea"
+          ></textarea>
+          <label for="floatingTextarea"></label>
+        </div>
+        <div class="mt-2">
+          <span><b>Shipping deliver:</b></span>
+          <span>Depend on shipping address:</span> <br />
+          <span>*HCM, Hà Nội area : within 24h.</span> <br />
+          <span>*Đà Nẵng area : within 2h-4h</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="total-pay">
+        <h5><b>Total bill:</b> {{ totalBill | number }} VND</h5>
+        <button class="btn btn-danger">Payment</button>
+        <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+      </div>
+    </div>
+  </div>
+</div>

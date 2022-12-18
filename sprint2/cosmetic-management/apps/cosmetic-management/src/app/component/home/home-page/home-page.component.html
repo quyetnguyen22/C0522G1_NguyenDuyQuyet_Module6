@@ -1,0 +1,201 @@
+<!--<app-header [receiveData]="countProduct"></app-header>-->
+<p-toast></p-toast>
+<p-scrollTop></p-scrollTop>
+<p-scrollPanel>
+  <div class="surface-section">
+    <!--  <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>-->
+    <!-- Slider -->
+    <div id="slider">
+      <div class="slides">
+        <div class="slider">
+          <div class="legend"></div>
+          <div class="content">
+            <div class="content-txt">
+              <h1>Lorem ipsum dolor</h1>
+              <h2>
+                Nam ultrices pellentesque facilisis. In semper tellus mollis
+                nisl pulvinar vitae vulputate lorem consequat. Fusce odio
+                tortor, pretium sit amet auctor ut, ultrices vel nibh.
+              </h2>
+            </div>
+          </div>
+          <div class="image">
+            <img
+              src="https://hairworld.vn/wp-content/uploads/2022/11/300193038_452511923562324_339440642615721651_n.jpg"
+            />
+          </div>
+        </div>
+        <div class="slider">
+          <div class="legend"></div>
+          <div class="content">
+            <div class="content-txt">
+              <h1>Lorem ipsum dolor</h1>
+              <h2>
+                Nam ultrices pellentesque facilisis. In semper tellus mollis
+                nisl pulvinar vitae vulputate lorem consequat. Fusce odio
+                tortor, pretium sit amet auctor ut, ultrices vel nibh.
+              </h2>
+            </div>
+          </div>
+          <div class="image">
+            <img
+              src="http://kemin.vn/wp-content/uploads/2021/06/tu-a-z-kinh-nghiem-mua-my-pham-han-quoc-chat-luong-tiet-kiem-5e8698f6a74c9.jpg"
+            />
+          </div>
+        </div>
+        <div class="slider">
+          <div class="legend"></div>
+          <div class="content">
+            <div class="content-txt">
+              <h1>Lorem ipsum dolor</h1>
+              <h2>
+                Nam ultrices pellentesque facilisis. In semper tellus mollis
+                nisl pulvinar vitae vulputate lorem consequat. Fusce odio
+                tortor, pretium sit amet auctor ut, ultrices vel nibh.
+              </h2>
+            </div>
+          </div>
+          <div class="image">
+            <img
+              src="https://vinmec-prod.s3.amazonaws.com/images/20210313_063949_898085_my-pham-an-toan.max-1800x1800.jpg"
+            />
+          </div>
+        </div>
+        <div class="slider">
+          <div class="legend"></div>
+          <div class="content">
+            <div class="content-txt">
+              <h1>Lorem ipsum dolor</h1>
+              <h2>
+                Nam ultrices pellentesque facilisis. In semper tellus mollis
+                nisl pulvinar vitae vulputate lorem consequat. Fusce odio
+                tortor, pretium sit amet auctor ut, ultrices vel nibh.
+              </h2>
+            </div>
+          </div>
+          <div class="image">
+            <img
+              src="https://image.thanhnien.vn/w1024/Uploaded/2022/urwqwc.zl/2021_01_12/maihan1/mh_1_iroq.jpg"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="switch">
+        <ul>
+          <li>
+            <div class="on"></div>
+          </li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <h1 style="text-align: center; color: red"><strong>PRODUCTS</strong></h1>
+    </div>
+    <div class="row nav justify-content-center mt-2">
+      <div class="col-lg-1"></div>
+      <div class="col-lg-10" style="border-radius: 20px">
+        <div
+          *ngIf="productList$ == null"
+          class="mb-5 mt-5"
+          style="color: orange; text-align: center"
+        >
+          <div class="spinner-border text-warning" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <h1>Sản phẩm đang cập nhật. Vui lòng chọn sản phẩm khác !</h1>
+        </div>
+        <div *ngIf="productList$ != null">
+          <div
+            class="container-fluid bg-trasparent my-4 p-3"
+            style="position: relative"
+          >
+            <div
+              class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3"
+            >
+              <div
+                class="lg:col-3 md:col-6 sm:col-12 pt-5"
+                *ngFor="let item of (productList$ | async)!"
+              >
+                <div class="card h-100 shadow-sm">
+                  <a href="#">
+                    <img
+                      src="{{ item.imageLink }}"
+                      class="card-img-top"
+                      alt="product.title"
+                    />
+                  </a>
+
+                  <div class="label-top shadow-sm">
+                    <a class="text-white" href="#">asus</a>
+                  </div>
+                  <div class="card-body mx-5">
+                    <div class="clearfix mb-3">
+                      <span class="float-start badge rounded-pill bg-success">{{
+                        item.price | number
+                      }}</span>
+
+                      <span class="float-end"
+                        ><a
+                          href="#"
+                          class="small text-muted text-uppercase aff-link"
+                          >reviews</a
+                        ></span
+                      >
+                    </div>
+                    <h5 class="card-title">
+                      <a target="_blank" href="#">{{ item.name }}</a>
+                    </h5>
+
+                    <div class="d-grid gap-2 my-4">
+                      <button
+                        type="button"
+                        pButton
+                        pRipple
+                        class="btn btn-warning bold-btn"
+                        (click)="addToCart(item)"
+                      >
+                        add to cart
+                      </button>
+                    </div>
+                    <div class="clearfix mb-1">
+                      <span class="float-start"
+                        ><a href="#"><i class="fas fa-question-circle"></i></a
+                      ></span>
+
+                      <span class="float-end">
+                        <i class="far fa-heart" style="cursor: pointer"></i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-1"></div>
+      <div *ngIf="total != null" class="text-center pb-3">
+        <button
+          *ngIf="size <= total"
+          (click)="viewMore()"
+          class="btn btn-primary cursor-pointer"
+          style="vertical-align: middle; text-align: center"
+        >
+          More
+        </button>
+      </div>
+    </div>
+    <div class="gototop js-top">
+      <a href="#" class="js-gotop"><i class="ion-ios-arrow-up"></i></a>
+    </div>
+  </div>
+  <p-scrollTop
+    target="parent"
+    styleClass="custom-scrolltop"
+    [threshold]="100"
+    icon="pi pi-arrow-up"
+  ></p-scrollTop>
+</p-scrollPanel>

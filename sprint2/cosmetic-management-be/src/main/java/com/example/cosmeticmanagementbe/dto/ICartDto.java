@@ -7,4 +7,5 @@ public interface ICartDto {
     double getSumPerOne();
     String getImage();
     String getName();
+
 }
