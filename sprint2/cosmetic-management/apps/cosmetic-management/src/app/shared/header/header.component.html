@@ -262,10 +262,32 @@
           </a>
         </li>
         <li class="flex">
-          <a
+          <a *ngIf="isSignedIn"
             pRipple
             class="text-900 font-medium inline-flex align-items-center cursor-pointer px-2 sm:px-3 text-700 hover:text-primary"
             routerLink="/product/cart"
+          >
+            <!--            <i class="pi pi-shopping-cart lg:mr-3 text-xl sm:text-base" pBadge></i>-->
+            <i
+              *ngIf="countProduct != null"
+              class="pi pi-shopping-cart lg:mr-3 text-xl sm:text-2xl"
+              pBadge
+              style="font-size: 1rem"
+              value="{{ countProduct }}"
+            ></i>
+            <i
+              *ngIf="countProduct == null"
+              class="pi pi-shopping-cart lg:mr-3 text-xl sm:text-2xl"
+              pBadge
+              style="font-size: 1rem"
+              value="0"
+            ></i>
+            <span class="hidden lg:inline">Cart</span>
+          </a>
+          <a *ngIf="!isSignedIn"
+            pRipple
+            class="text-900 font-medium inline-flex align-items-center cursor-pointer px-2 sm:px-3 text-700 hover:text-primary"
+            routerLink="/account"
           >
             <!--            <i class="pi pi-shopping-cart lg:mr-3 text-xl sm:text-base" pBadge></i>-->
             <i

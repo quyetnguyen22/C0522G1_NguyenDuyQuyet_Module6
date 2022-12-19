@@ -6,6 +6,7 @@ import { environment } from '../../environments/environment';
 import { DataContent } from '../model/data-content';
 import { CartDto } from '../dto/cart-dto';
 import {TokenStorageService} from "./token-storage.service";
+import {ApiInterceptorService} from "../api-interceptor.service";
 
 const URL_API = `${environment.url}`;
 @Injectable({
@@ -14,15 +15,16 @@ const URL_API = `${environment.url}`;
 export class ProductService {
 
   httpOptions: any;
-  constructor(private http: HttpClient, private tokenService: TokenStorageService) {
-    this.httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + this.tokenService.getToken()
-      }),
-      'Access-Control-Allow-Origin': 'http://localhost:4200',
-      'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
-    };
+  constructor(private http: HttpClient,
+              private tokenService: TokenStorageService) {
+    // this.httpOptions = {
+    //   headers: new HttpHeaders({
+    //     'Content-Type': 'application/json',
+    //     Authorization: 'Bearer ' + this.tokenService.getToken()
+    //   }),
+    //   'Access-Control-Allow-Origin': 'http://localhost:4200',
+    //   'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
+    // };
 
   }
 

@@ -112,14 +112,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.csrf().disable().authorizeRequests().antMatchers("/api/login/**"
-//                        ,"/api/product/**"
+                        ,"/api/product/home"
                 )
                 .permitAll()
 
                 .and()
                 .authorizeRequests()
-                .antMatchers("api/product/**"
-                ).access("hasRole('ROLE_ADMIN')")
+                .antMatchers("api/product/**")
+                .access("hasAnyRole('ROLE_ADMIN')")
                 .anyRequest().authenticated()
 
                 .and().cors()

@@ -38,6 +38,11 @@ public class Product {
     @JoinColumn(name = "cos_type_id", referencedColumnName = "id")
     CosmeticType cosmeticType;
 
+//    @ManyToOne
+//    @JsonBackReference
+//    @JoinColumn(name = "cart_id", referencedColumnName = "id")
+//    Cart cart;
+
     public Product() {
     }
 
@@ -128,4 +133,12 @@ public class Product {
     public void setCosmeticType(CosmeticType cosmeticType) {
         this.cosmeticType = cosmeticType;
     }
+
+//    public Cart getCart() {
+//        return cart;
+//    }
+//
+//    public void setCart(Cart cart) {
+//        this.cart = cart;
+//    }
 }

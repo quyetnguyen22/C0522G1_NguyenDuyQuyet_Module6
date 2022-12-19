@@ -25,7 +25,7 @@ public class ProductRestController {
     @Autowired
     private ICartService cartService;
 
-    @GetMapping("/list")
+    @GetMapping("/home/list")
     public ResponseEntity<Page<IProductDto>> getListProduct(@PageableDefault(value = 10) Pageable pageable,
                                                             @RequestParam(value = "name", defaultValue = "") String name) {
         Page<IProductDto> productDto = productService.getListProduct(name, pageable);
