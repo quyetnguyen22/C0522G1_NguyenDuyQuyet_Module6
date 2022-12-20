@@ -5,6 +5,7 @@ import { CartDto } from '../../../dto/cart-dto';
 import { MessageService, PrimeNGConfig } from 'primeng/api';
 import { Router } from '@angular/router';
 import { ICreateOrderRequest, IPayPalConfig } from 'ngx-paypal';
+import {TokenStorageService} from "../../../service/token-storage.service";
 
 declare function cart(): any;
 
@@ -17,14 +18,17 @@ export class CartComponent implements OnInit {
   cartList$: Observable<CartDto[]> | undefined;
   totalBill: number | undefined;
   payPalConfig: IPayPalConfig;
+  username: string;
   constructor(
     private productService: ProductService,
     private router: Router,
     private messageService: MessageService,
-    private primengConfig: PrimeNGConfig
+    private primengConfig: PrimeNGConfig,
+    private tokenStorageService: TokenStorageService
   ) {}
 
   ngOnInit(): void {
+    this.username = this.tokenStorageService.getUser().username;
     cart();
     scrollTo(0, 0);
     this.getAllInCart();
@@ -33,7 +37,7 @@ export class CartComponent implements OnInit {
     this.primengConfig.ripple = true;
   }
   getAllInCart() {
-    this.productService.getCartList().subscribe((value) => {
+    this.productService.getCartList(this.username).subscribe((value) => {
       if (value == null) {
         this.router.navigateByUrl('');
       }
@@ -43,7 +47,7 @@ export class CartComponent implements OnInit {
   }
 
   getTotalBill() {
-    this.productService.getTotalBill().subscribe((value) => {
+    this.productService.getTotalBill(this.username).subscribe((value) => {
       console.log(value);
       this.totalBill = value.totalBill;
     });
@@ -51,8 +55,9 @@ export class CartComponent implements OnInit {
 
   updateQty(cart: CartDto) {
     console.log(cart);
-    this.productService.updateQty(cart).subscribe((value) => {
-      this.ngOnInit();
+    this.productService.updateQty(cart, this.username).subscribe((value) => {
+      this.getAllInCart();
+      this.getTotalBill();
     });
   }
 

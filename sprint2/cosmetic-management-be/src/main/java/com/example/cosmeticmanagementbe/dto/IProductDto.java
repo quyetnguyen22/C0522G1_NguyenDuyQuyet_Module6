@@ -17,4 +17,5 @@ public interface IProductDto {
     CosmeticType getCosmeticType();
     String getImageLink();
     Integer getCosmeticId();
+    String getUsername();
 }

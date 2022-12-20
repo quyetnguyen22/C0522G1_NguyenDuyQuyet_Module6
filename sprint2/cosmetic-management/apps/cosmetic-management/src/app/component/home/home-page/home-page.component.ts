@@ -5,6 +5,8 @@ import { ProductService } from '../../../service/product.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import loader from '@angular-devkit/build-angular/src/webpack/plugins/single-test-transform';
 import { HeaderComponent } from '../../../shared/header/header.component';
+import {TokenStorageService} from "../../../service/token-storage.service";
+import {Account} from "../../../model/account";
 
 @Component({
   selector: 'app-home-page',
@@ -18,11 +20,13 @@ export class HomePageComponent implements OnInit {
   size = 4;
   items: MenuItem[] | undefined;
   home: MenuItem | undefined;
+  username: string;
 
   constructor(
     private productService: ProductService,
     private messageService: MessageService,
-    private primengConfig: PrimeNGConfig
+    private primengConfig: PrimeNGConfig,
+    private tokenStorageService: TokenStorageService
   ) {}
 
   ngOnInit() {
@@ -36,6 +40,7 @@ export class HomePageComponent implements OnInit {
     this.home = { icon: 'pi pi-home', routerLink: '/' };
     this.getAllProduct();
     this.primengConfig.ripple = true;
+    this.username = this.tokenStorageService.getUser().username;
   }
 
   getAllProduct() {
@@ -54,8 +59,10 @@ export class HomePageComponent implements OnInit {
     this.getAllProduct();
   }
 
+
   addToCart(item: ProductDto) {
-    this.productService.updateCart(item).subscribe(() => {
+    console.log(this.username);
+    this.productService.updateCart(item, this.username).subscribe(() => {
       this.messageService.add({
         severity: 'success',
         summary: 'Success',

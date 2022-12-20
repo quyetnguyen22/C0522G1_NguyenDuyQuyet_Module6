@@ -91,9 +91,19 @@ foreign key (username) references user(username)
 
 create table if not exists cart(
 id int primary key auto_increment,
+username varchar(30),
+foreign key(username) references user(username),
+is_deleted bit default 0
+);
+
+create table if not exists cart_cosmetic(
+cart_id int,
 cosmetic_id int,
 qty int,
-is_deleted bit default 0
+is_deleted bit default 0,
+foreign key(cart_id) references cart(id),
+foreign key(cosmetic_id) references cosmetic(id),
+primary key(cart_id, cosmetic_id)
 );
 
 -- create table if not exists bill(
@@ -187,11 +197,18 @@ insert into images (cosmetic_id, image_link) values (7, 'https://eterrite.com.vn
 insert into images (cosmetic_id, image_link) values (8, 'https://cdn.tgdd.vn/Products/Images/6562/275810/kem-duong-some-by-mi-aha-bha-pha-30-days-miracle-cream-tri-mun-hop-60g-030522-074241-600x600.jpg');
 insert into images (cosmetic_id, image_link) values (9, 'https://static.techecom.vn/15176/category/2021/04/17/slide1-m-1618628508.jpg');
 
+-- select count(cart.id) as countProduct, sum(cart.qty*cosmetic.price)
+-- from cart 
+-- join cosmetic on cart.cosmetic_id = cosmetic.id 
+-- join images on cosmetic.id = images.cosmetic_id 
+-- where cart.is_deleted = 0 
+-- group by cosmetic.id;
+
 select cosmetic.id as id, cosmetic.name as name, cosmetic.price as price,
 images.image_link as imageLink from cosmetic
 join images on cosmetic.id = images.cosmetic_id 
 where cosmetic.is_deleted = 0 and cosmetic.name like '%%' and cosmetic.gender = 2
 group by cosmetic.id;
 
-update cart set qty = qty + 1 
-where id = 1 and is_deleted = 0
+-- update cart set qty = qty + 1 
+-- where id = 1 and is_deleted = 0

@@ -38,7 +38,6 @@ public class JwtFilter extends OncePerRequestFilter {
             username = jwtUtil.extractUsername(token);
             System.out.println(username);
         }
-
         /**
          * confirm the token
          */

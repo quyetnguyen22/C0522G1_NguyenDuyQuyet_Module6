@@ -11,37 +11,32 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
-    String name;
-    boolean isDeleted = false;
-    String volume;
-    double price;
-    Integer gender;
+    private Integer id;
+    private String name;
+    private boolean isDeleted = false;
+    private String volume;
+    private double price;
+    private Integer gender;
 
     @Column(columnDefinition = "TEXT")
-    String descriptions;
+    private String descriptions;
     @Column(columnDefinition = "TEXT")
-    String usingProduct;
+    private String usingProduct;
 
     @ManyToOne
     @JsonBackReference
     @JoinColumn(name = "producer_id", referencedColumnName = "id")
-    Producer producer;
+    private Producer producer;
 
     @ManyToOne
     @JsonBackReference
     @JoinColumn(name = "brand_id", referencedColumnName = "id")
-    Brand brand;
+    private Brand brand;
 
     @ManyToOne
     @JsonBackReference
     @JoinColumn(name = "cos_type_id", referencedColumnName = "id")
-    CosmeticType cosmeticType;
-
-//    @ManyToOne
-//    @JsonBackReference
-//    @JoinColumn(name = "cart_id", referencedColumnName = "id")
-//    Cart cart;
+    private CosmeticType cosmeticType;
 
     public Product() {
     }
@@ -133,12 +128,4 @@ public class Product {
     public void setCosmeticType(CosmeticType cosmeticType) {
         this.cosmeticType = cosmeticType;
     }
-
-//    public Cart getCart() {
-//        return cart;
-//    }
-//
-//    public void setCart(Cart cart) {
-//        this.cart = cart;
-//    }
 }

@@ -10,7 +10,6 @@ export class ApiInterceptorService implements HttpInterceptor{
 
   constructor(private tokenService: TokenStorageService) { }
 
-
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     // request = request.clone({

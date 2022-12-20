@@ -3,6 +3,8 @@ package com.example.cosmeticmanagementbe.controller;
 import com.example.cosmeticmanagementbe.dto.ICartDto;
 import com.example.cosmeticmanagementbe.dto.IProductDto;
 import com.example.cosmeticmanagementbe.dto.ITotalDto;
+import com.example.cosmeticmanagementbe.model.Cart;
+import com.example.cosmeticmanagementbe.model.Product;
 import com.example.cosmeticmanagementbe.service.ICartService;
 import com.example.cosmeticmanagementbe.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +27,7 @@ public class ProductRestController {
     @Autowired
     private ICartService cartService;
 
-    @GetMapping("/home/list")
+    @GetMapping("/list")
     public ResponseEntity<Page<IProductDto>> getListProduct(@PageableDefault(value = 10) Pageable pageable,
                                                             @RequestParam(value = "name", defaultValue = "") String name) {
         Page<IProductDto> productDto = productService.getListProduct(name, pageable);
@@ -46,8 +48,9 @@ public class ProductRestController {
     }
 
     @GetMapping("/cart")
-    public ResponseEntity<List<ICartDto>> getCartList() {
-        List<ICartDto> cartDtos = cartService.getCartList();
+    public ResponseEntity<List<ICartDto>> getCartList(@RequestParam String username) {
+        Cart cart = cartService.findCartByUsername(username);
+        List<ICartDto> cartDtos = cartService.getCartList(cart.getId());
         if (cartDtos.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -55,8 +58,9 @@ public class ProductRestController {
     }
 
     @GetMapping("/total-bill")
-    public ResponseEntity<ITotalDto> getTotalBill() {
-        ITotalDto totalBill = cartService.getTotalBill();
+    public ResponseEntity<ITotalDto> getTotalBill(@RequestParam String username) {
+        Cart cart = cartService.findCartByUsername(username);
+        ITotalDto totalBill = cartService.getTotalBill(cart.getId());
         if (totalBill == null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -64,21 +68,25 @@ public class ProductRestController {
     }
 
     @PostMapping("/cart-update")
-    public ResponseEntity<?> updateCart(@RequestParam Integer id) {
-        ICartDto cartDto = cartService.findById(id);
-        if (cartDto == null) {
-            cartService.insertToCart(id);
+    public ResponseEntity<?> updateCart(@RequestParam Integer id,
+                                        @RequestParam String username) {
+        IProductDto productDto = cartService.findById(id, username);
+        Cart cart = cartService.findCartByUsername(username);
+        if (productDto == null) {
+            cartService.insertProductToCart(id, cart.getId());
             return new ResponseEntity<>(HttpStatus.OK);
         }
-        cartService.updateCart(id);
+        cartService.updateCosmeticCart(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PatchMapping("/qty-update")
     public ResponseEntity<?> updateQty(@RequestParam Integer id,
-                                       @RequestParam Integer qty) {
+                                       @RequestParam Integer qty,
+                                       @RequestParam String username) {
 
-        cartService.updateQty(id, qty);
+        Cart cart = cartService.findCartByUsername(username);
+        cartService.updateQty(id, qty, cart.getId());
 
         return new ResponseEntity<>(HttpStatus.OK);
     }

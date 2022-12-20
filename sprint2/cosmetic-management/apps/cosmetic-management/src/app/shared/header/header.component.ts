@@ -10,17 +10,19 @@ import {TokenStorageService} from "../../service/token-storage.service";
 })
 export class HeaderComponent implements OnInit {
   countProduct: number | undefined;
-  isSignedIn = localStorage.getItem('auth-user');
+  username: string;
 
   constructor(private productService: ProductService
               ,private tokenStorageService: TokenStorageService) {}
 
   ngOnInit(): void {
+    this.username = this.tokenStorageService.getUser().username;
     this.getTotal();
   }
 
   getTotal() {
-    this.productService.getTotalBill().subscribe((value) => {
+    console.log('h+ ' + this.username)
+    this.productService.getTotalBill(this.username).subscribe((value) => {
       console.log(value);
       this.countProduct = value.countProduct;
     });

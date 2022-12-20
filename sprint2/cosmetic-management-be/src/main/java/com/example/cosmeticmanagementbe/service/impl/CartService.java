@@ -1,11 +1,12 @@
 package com.example.cosmeticmanagementbe.service.impl;
 
 import com.example.cosmeticmanagementbe.dto.ICartDto;
+import com.example.cosmeticmanagementbe.dto.IProductDto;
 import com.example.cosmeticmanagementbe.dto.ITotalDto;
+import com.example.cosmeticmanagementbe.model.Cart;
 import com.example.cosmeticmanagementbe.repository.ICartRepo;
 import com.example.cosmeticmanagementbe.service.ICartService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,28 +17,33 @@ public class CartService implements ICartService {
     @Autowired
     private ICartRepo cartRepo;
     @Override
-    public List<ICartDto> getCartList() {
-        return cartRepo.getCartList();
+    public List<ICartDto> getCartList(Integer cartId) {
+        return cartRepo.getCartList(cartId);
     }
 
     @Override
-    public ITotalDto getTotalBill() {
-        return cartRepo.getTotalBill();
+    public Cart findCartByUsername(String username) {
+        return cartRepo.findCartId(username);
     }
 
     @Override
-    public void updateCart(Integer id) {
-        cartRepo.updateCart(id);
+    public ITotalDto getTotalBill(Integer cart_id) {
+        return cartRepo.getTotalBill(cart_id);
     }
 
     @Override
-    public void insertToCart(Integer id) {
-        cartRepo.insertToCart(id);
+    public void updateCosmeticCart(Integer id) {
+        cartRepo.updateCosmeticCart(id);
     }
 
     @Override
-    public void updateQty(Integer id, Integer qty) {
-        cartRepo.updateQty(id, qty);
+    public void insertProductToCart(Integer id, Integer cart_id) {
+        cartRepo.insertProductToCart(id, cart_id);
+    }
+
+    @Override
+    public void updateQty(Integer id, Integer qty, Integer cartId) {
+        cartRepo.updateQty(id, qty, cartId);
     }
 
     @Override
@@ -46,7 +52,7 @@ public class CartService implements ICartService {
     }
 
     @Override
-    public ICartDto findById(Integer id) {
-        return cartRepo.findByIdCosmetic(id);
+    public IProductDto findById(Integer id, String username) {
+        return cartRepo.findByIdCosmetic(id, username);
     }
 }

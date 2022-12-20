@@ -5,9 +5,7 @@ import { Observable } from 'rxjs';
 import { Account } from '../model/account';
 
 const URL_API = `${environment.url}`;
-// const httpOptions = {
-//   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-// };
+
 
 @Injectable({
   providedIn: 'root',

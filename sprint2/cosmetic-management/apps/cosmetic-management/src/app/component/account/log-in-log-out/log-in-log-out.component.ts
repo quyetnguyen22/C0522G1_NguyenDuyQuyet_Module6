@@ -88,8 +88,8 @@ export class LogInLogOutComponent implements OnInit {
     this.authService.login(this.formSign.value).subscribe((data) => {
       console.log(data);
       this.tokenStorageService.saveTokenSession(data.accessToken);
-      this.tokenStorageService.saveUserLocal(data.accessToken);
-      // this.tokenStorageService.saveUserLocal(data);
+      // this.tokenStorageService.saveUserLocal(data.accessToken);
+      this.tokenStorageService.saveUserLocal(data);
       this.authService.isLoggedIn = true;
       this.username = this.tokenStorageService.getUser().username;
       this.roles = this.tokenStorageService.getUser().roles;
