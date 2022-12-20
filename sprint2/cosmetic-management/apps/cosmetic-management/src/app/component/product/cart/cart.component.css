@@ -5,31 +5,38 @@
   color: white;
   font-size: 20px;
 }
+
 /*giỏ hàng của bạn*/
 .cart-product-body {
   padding-top: 20px;
   margin: auto;
 }
+
 .cart-product-body .cart-product-pay {
   color: black;
 }
+
 .cart-product-body .cart-product-pay table {
   border: 3px #a50318;
 }
+
 .bill-pay-body {
   margin: auto;
   padding-bottom: 20px;
   color: black;
 }
+
 .bill-pay-body .total-pay {
   /*color: black;*/
   margin-left: 65%;
 }
+
 .bill-pay-body .form-control {
   height: 70px;
   width: 300px;
   border-radius: 10px;
 }
+
 .card-body ul li {
   list-style-type: none;
 }
@@ -90,6 +97,7 @@
   -webkit-appearance: none;
   margin: 0;
 }
+
 /*anh sp chi tiet*/
 
 /*The grid: Four equal columns that floats next to each other*/
@@ -118,4 +126,12 @@
   content: '';
   display: table;
   clear: both;
+}
+
+/*paypal*/
+@media only screen and (min-width: 200px){
+  .paypal-button.paypal-button-shape-rect {
+    border-radius: 4px;
+    display: none;
+  }
 }
