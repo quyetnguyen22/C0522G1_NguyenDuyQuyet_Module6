@@ -25,6 +25,10 @@ export class ProductService {
     return this.http.get<DataContent<ProductDto>>(URL_API + '/product/list?name=' + name + '&size=' + pageSize);
   }
 
+  findCosmeticById(id: number): Observable<ProductDto> {
+    return this.http.get<ProductDto>(URL_API + '/product/' + id)
+  }
+
   getWomenList(pageSize: number, name: string): Observable<DataContent<ProductDto>> {
     return this.http.get<DataContent<ProductDto>>(
       URL_API + '/product/women-list?name=' + name + '&size=' + pageSize

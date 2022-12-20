@@ -12,4 +12,6 @@ public interface IProductService {
     Page<IProductDto> getListProduct(String name, Pageable pageable);
 
     Page<IProductDto> getWomenProduct(String name, Pageable pageable);
+
+    IProductDto getProductById(Integer id);
 }

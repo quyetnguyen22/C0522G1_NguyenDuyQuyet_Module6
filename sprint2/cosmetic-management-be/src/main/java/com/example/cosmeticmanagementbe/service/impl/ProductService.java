@@ -26,4 +26,9 @@ public class ProductService implements IProductService {
     public Page<IProductDto> getWomenProduct(String name, Pageable pageable) {
         return productRepository.getWomenProduct(name, pageable);
     }
+
+    @Override
+    public IProductDto getProductById(Integer id) {
+        return productRepository.getProductById(id);
+    }
 }

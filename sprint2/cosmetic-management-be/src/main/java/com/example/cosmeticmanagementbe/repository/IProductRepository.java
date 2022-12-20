@@ -21,6 +21,15 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
             "group by cosmetic.id")
     Page<IProductDto> getListProduct(@Param("name") String name, Pageable pageable);
 
+    @Query(value = "select c.id, c.name, c.volume, c.price, c.gender, c.descriptions, c.using_product as usingProduct, p.name as producer, " +
+            "b.name as brand, ct.name as cosmeticType, i.image_link as imageLink from cosmetic as c " +
+            "join brand as b on c.brand_id = b.id " +
+            "join cos_type as ct on c.cos_type_id = ct.id " +
+            "join producer as p on p.id = c.producer_id " +
+            "join images as i on c.id = i.cosmetic_id " +
+            "where c.id = :id and c.is_deleted = 0 ", nativeQuery = true)
+    IProductDto getProductById(@Param("id") Integer id);
+
     @Query(value = "select cosmetic.id as id, cosmetic.name as name, cosmetic.price as price, " +
             "images.image_link as imageLink from cosmetic " +
             "join images on cosmetic.id = images.cosmetic_id " +

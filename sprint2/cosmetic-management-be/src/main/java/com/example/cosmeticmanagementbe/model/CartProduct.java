@@ -16,8 +16,6 @@ public class CartProduct implements Serializable {
     @JoinColumn(name = "cart_id", referencedColumnName = "id")
     private Cart cart;
     private Integer qty;
-    @Column(name = "is_deleted")
-    private boolean isDeleted;
 
     public CartProduct() {
     }
@@ -46,11 +44,4 @@ public class CartProduct implements Serializable {
         this.cart = cart;
     }
 
-    public boolean isDeleted() {
-        return isDeleted;
-    }
-
-    public void setDeleted(boolean deleted) {
-        isDeleted = deleted;
-    }
 }

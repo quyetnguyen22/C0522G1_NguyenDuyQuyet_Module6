@@ -12,9 +12,9 @@ public interface IProductDto {
     Integer getGender();
     String getDescription();
     String getUsingProduct();
-    Producer getProducer();
-    Brand getBrand();
-    CosmeticType getCosmeticType();
+    String getProducer();
+    String getBrand();
+    String getCosmeticType();
     String getImageLink();
     Integer getCosmeticId();
     String getUsername();

@@ -10,7 +10,7 @@ export interface ProductDto {
   gender?: number;
   description?: string;
   usingProduct?: string;
-  producer?: ProducerDto;
+  producer?: string;
   brand?: BrandDto;
   cosmeticType?: CosmeticTypeDto;
   imageLink?: string;

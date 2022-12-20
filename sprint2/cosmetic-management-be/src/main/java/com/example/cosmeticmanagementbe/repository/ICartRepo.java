@@ -22,7 +22,7 @@ public interface ICartRepo extends JpaRepository<Cart, Integer> {
             "join cart on cart.id = cart_cosmetic.cart_id " +
             "join cosmetic on cart_cosmetic.cosmetic_id = cosmetic.id " +
             "join images on cosmetic.id = images.cosmetic_id " +
-            "where cart_cosmetic.cart_id = :cartId and cart_cosmetic.is_deleted = 0 " +
+            "where cart_cosmetic.cart_id = :cartId " +
             "group by cosmetic.id ", nativeQuery = true)
     List<ICartDto> getCartList(Integer cartId);
 
@@ -32,7 +32,7 @@ public interface ICartRepo extends JpaRepository<Cart, Integer> {
     @Query(value = "select sum(cart_cosmetic.qty*cosmetic.price) as totalBill, count(cart_cosmetic.cosmetic_id) as countProduct " +
             "from cart_cosmetic " +
             "join cosmetic on cart_cosmetic.cosmetic_id = cosmetic.id " +
-            "where cart_cosmetic.cart_id = :cartId and cart_cosmetic.is_deleted = 0  ", nativeQuery = true)
+            "where cart_cosmetic.cart_id = :cartId ", nativeQuery = true)
     ITotalDto getTotalBill(@Param("cartId") Integer cartId);
 
     @Modifying
@@ -48,7 +48,7 @@ public interface ICartRepo extends JpaRepository<Cart, Integer> {
     @Query(value = "select cosmetic.id, cart.username as username from cart_cosmetic " +
             "join cosmetic on cart_cosmetic.cosmetic_id = cosmetic.id " +
             "join cart on cart.id = cart_cosmetic.cart_id " +
-            "where cart_cosmetic.cosmetic_id = :id and cart.username = :username and cart_cosmetic.is_deleted= 0", nativeQuery = true)
+            "where cart_cosmetic.cosmetic_id = :id and cart.username = :username ", nativeQuery = true)
     IProductDto findByIdCosmetic(@Param("id") Integer id,
                                  @Param("username") String username);
 
@@ -58,7 +58,6 @@ public interface ICartRepo extends JpaRepository<Cart, Integer> {
     void updateQty(Integer id, Integer qty, Integer cartId);
 
     @Modifying
-    @Query(value = "update cart set is_deleted = 1 " +
-            "where id = :id", nativeQuery = true)
+    @Query(value = "delete from cart_cosmetic where cosmetic_id = :id", nativeQuery = true)
     void deleteProduct(Integer id);
 }

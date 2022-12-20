@@ -37,6 +37,15 @@ public class ProductRestController {
         return new ResponseEntity<>(productDto, HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<IProductDto> getProductById(@PathVariable() Integer id) {
+        IProductDto productDto = productService.getProductById(id);
+        if (productDto == null) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(productDto, HttpStatus.OK);
+    }
+
     @GetMapping("/women-list")
     public ResponseEntity<Page<IProductDto>> getWomenProduct(@PageableDefault(value = 10) Pageable pageable,
                                                              @RequestParam(value = "name", defaultValue = "") String name) {

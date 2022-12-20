@@ -59,7 +59,6 @@ export class HomePageComponent implements OnInit {
     this.getAllProduct();
   }
 
-
   addToCart(item: ProductDto) {
     console.log(this.username);
     this.productService.updateCart(item, this.username).subscribe(() => {

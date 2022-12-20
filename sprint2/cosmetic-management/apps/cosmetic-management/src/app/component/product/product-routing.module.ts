@@ -16,7 +16,7 @@ const routes: Routes = [
   {
     path: 'product/women',
     component: WomenComponent,
-  },
+  }
 ];
 
 @NgModule({
