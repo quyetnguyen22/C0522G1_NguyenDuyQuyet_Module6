@@ -93,10 +93,11 @@
       </div>
     </div>
     <div class="col-lg-6">
-      <div class="total-pay">
+      <div class="total-pay" id="paypal">
         <h5><b>Total bill:</b> {{totalBill | number }} VND</h5>
-        <button class="btn btn-danger">Payment</button>
-        <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+        <button class="btn btn-danger" (click)="payment()">Payment</button>
+<!--        <ngx-paypal [config]="payPalConfig"></ngx-paypal>-->
+<!--        <ngx-paypal ></ngx-paypal>-->
       </div>
     </div>
   </div>

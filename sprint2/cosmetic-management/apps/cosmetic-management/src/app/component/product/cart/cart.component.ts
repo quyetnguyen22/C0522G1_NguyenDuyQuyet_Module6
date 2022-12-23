@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { ICreateOrderRequest, IPayPalConfig } from 'ngx-paypal';
 import {TokenStorageService} from "../../../service/token-storage.service";
 import {ProductDto} from "../../../dto/product-dto";
+import {render} from "creditcardpayments/creditCardPayments";
 
 declare function cart(): any;
 
@@ -16,9 +17,9 @@ declare function cart(): any;
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
-  cartList$: Observable<CartDto[]> | undefined;
-  // cartList: ProductDto;
-  totalBill: number | undefined;
+  cartList$: Observable<CartDto[]>;
+  cartList: ProductDto[];
+  totalBill: number;
   payPalConfig: IPayPalConfig;
   username: string;
   constructor(
@@ -35,8 +36,9 @@ export class CartComponent implements OnInit {
     scrollTo(0, 0);
     this.getAllInCart();
     this.getTotalBill();
-    this.initConfig();
+    // this.initConfig();
     this.primengConfig.ripple = true;
+
   }
   getAllInCart() {
     // this.cartList = this.tokenStorageService.getCartList();
@@ -47,13 +49,16 @@ export class CartComponent implements OnInit {
       }
       console.log(value);
       this.cartList$ = new BehaviorSubject<CartDto[]>(value);
+      this.cartList = value;
     });
   }
 
   getTotalBill() {
     this.productService.getTotalBill(this.username).subscribe((value) => {
       console.log(value);
-      this.totalBill = value.totalBill;
+      if (value.totalBill != null) {
+        this.totalBill = value.totalBill;
+      }
     });
   }
 
@@ -77,55 +82,86 @@ export class CartComponent implements OnInit {
     });
   }
 
-  private initConfig(): void {
+  removeCart(product: ProductDto) {
+    // this.tokenStorageService.removeCartList();
+    this.productService.removeProduct(product.id).subscribe((value) => {
+      this.ngOnInit();
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Success',
+        detail: 'Pay successfully',
+      });
+    });
+  }
 
-    this.payPalConfig = {
-      currency: 'USD',
-      clientId: 'AcuKQEMia2nn12ZZBn3on0voZf4uFmsrYv-p4jyrDrp5qHACqztRmYTEjKlbvyDujQ63oTG4gPX6wscJ',
-      advanced: {
-        commit: 'true'
-      },
-      style: {
-        label: 'paypal',
-        layout: 'horizontal',
-        size: 'responsive',
-        shape: 'pill',
-        color: 'gold',
-      },
-      createOrderOnClient: (data) => <ICreateOrderRequest>{
+  // private initConfig(): void {
+  //
+  //   this.payPalConfig = {
+  //     currency: 'USD',
+  //     clientId: 'AcuKQEMia2nn12ZZBn3on0voZf4uFmsrYv-p4jyrDrp5qHACqztRmYTEjKlbvyDujQ63oTG4gPX6wscJ',
+  //     advanced: {
+  //       commit: 'true'
+  //     },
+  //     style: {
+  //       label: 'paypal',
+  //       layout: 'horizontal',
+  //       size: 'responsive',
+  //       shape: 'pill',
+  //       color: 'gold',
+  //     },
+  //     createOrderOnClient: (data) => <ICreateOrderRequest>{
+  //
+  //       purchase_units: [{
+  //         amount: {
+  //           currency_code: 'USD',
+  //           value: '1',
+  //           // breakdown: {
+  //           //   item_total: {
+  //           //     currency_code: 'EUR',
+  //           //     value: '9.99'
+  //           //   }
+  //           // }
+  //         },
+  //         // items: [{
+  //         //   name: 'Enterprise Subscription',
+  //         //   quantity: '1',
+  //         //   category: 'DIGITAL_GOODS',
+  //         //   unit_amount: {
+  //         //     currency_code: 'EUR',
+  //         //     value: '8.99',
+  //         //   },
+  //         // }]
+  //       }]
+  //     },
+  //     onApprove: (data, actions) => {
+  //     },
+  //     onClientAuthorization: (data) => {
+  //     },
+  //     onCancel: (data, actions) => {
+  //     },
+  //     onError: err => {
+  //     },
+  //     onClick: (data, actions) => {
+  //     },
+  //   };
+  // }
 
-        purchase_units: [{
-          amount: {
-            currency_code: 'USD',
-            value: '1',
-            // breakdown: {
-            //   item_total: {
-            //     currency_code: 'EUR',
-            //     value: '9.99'
-            //   }
-            // }
-          },
-          // items: [{
-          //   name: 'Enterprise Subscription',
-          //   quantity: '1',
-          //   category: 'DIGITAL_GOODS',
-          //   unit_amount: {
-          //     currency_code: 'EUR',
-          //     value: '8.99',
-          //   },
-          // }]
-        }]
-      },
-      onApprove: (data, actions) => {
-      },
-      onClientAuthorization: (data) => {
-      },
-      onCancel: (data, actions) => {
-      },
-      onError: err => {
-      },
-      onClick: (data, actions) => {
-      },
-    };
+  payment() {
+    // document.getElementById('myPayPalButtons').innerHTML = '<div id="btnPaypal"></div>';
+    // const username = this.tokenStorageService.getUser().username;
+    console.log("p " + this.totalBill)
+      render({
+        id: '#paypal',
+        currency: 'USD',
+        value: String((this.totalBill / 23000).toFixed(2)),
+        onApprove: () => {
+          for (let item of this.cartList) {
+            this.removeCart(item);
+            this.router.navigateByUrl('');
+          }
+
+        }
+      });
+
   }
 }
