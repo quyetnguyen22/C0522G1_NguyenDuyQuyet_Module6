@@ -18,12 +18,11 @@
       <span>Sign In</span>
     </a>
 
+    <span class="pi pi-user text-white font-medium">{{username}} </span>
     <a *ngIf="username"
        pRipple
-       class="text-white font-medium inline-flex align-items-center cursor-pointer px-3 hover:text-gray-200"
-       (click)="signOut()"
-    >
-      <span class="mr-2 sm:mr-3">Sign Out</span>
+       class="text-white font-medium inline-flex align-items-center cursor-pointer px-3 hover:text-gray-200">
+      <span class="mr-2 sm:mr-3" (click)="signOut()"> Sign Out</span>
       <i class="pi pi-sign-out text-sm"></i>
     </a>
     <div class="text-white mx-1 sm:mx-2">|</div>

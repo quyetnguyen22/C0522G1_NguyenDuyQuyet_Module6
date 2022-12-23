@@ -17,9 +17,10 @@
           </thead>
           <tbody>
             <tr *ngFor="let product of (cartList$ | async)!">
+
               <td>
                 <img
-                  src="{{ product.image }}"
+                  src="{{product.image }}"
                   id="expandedImg"
                   style="
                     width: 70%;
@@ -30,7 +31,7 @@
                 />
               </td>
               <td class="text-left">
-                <h4>{{ product.name }}</h4>
+                <h4>{{product.name }}</h4>
                 <a
                   (click)="removeProduct(product)"
                   pButton
@@ -39,15 +40,15 @@
                   style="color: #a50318"
                   >Remove</a
                 >
-                <!--              <button type="button" pButton pRipple class="btn btn-warning bold-btn" (click)="addToCart(item)">add to cart</button>-->
+<!--                              <button type="button" pButton pRipple class="btn btn-warning bold-btn" (click)="addToCart(product)">add to cart</button>-->
               </td>
-              <td>{{ product.price | number }}</td>
+              <td>{{product.price | number }}</td>
               <td>
-                <!--                          <div class="buttons_added">-->
-                <!--              <input class="minus is-form" type="button" value="-">-->
-                <!--              <input aria-label="quantity" class="input-qty" max="999" min="1" name="" type="number" [value]="product.qty">-->
-                <!--              <input class="plus is-form" type="button" value="+">-->
-                <!--            </div>-->
+<!--                                          <div class="buttons_added">-->
+<!--                              <input class="minus is-form" type="button" value="-">-->
+<!--                              <input aria-label="quantity" class="input-qty" max="999" min="1" name="" type="number" [value]="product.qty">-->
+<!--                              <input class="plus is-form" type="button" value="+">-->
+<!--                            </div>-->
                 <p-inputNumber
                   [(ngModel)]="product.qty"
                   [showButtons]="true"
@@ -64,7 +65,7 @@
                 >
                 </p-inputNumber>
               </td>
-              <td>{{ product.sumPerOne | number }}</td>
+              <td>{{product.sumPerOne | number }}</td>
             </tr>
           </tbody>
         </table>
@@ -93,7 +94,7 @@
     </div>
     <div class="col-lg-6">
       <div class="total-pay">
-        <h5><b>Total bill:</b> {{ totalBill | number }} VND</h5>
+        <h5><b>Total bill:</b> {{totalBill | number }} VND</h5>
         <button class="btn btn-danger">Payment</button>
         <ngx-paypal [config]="payPalConfig"></ngx-paypal>
       </div>

@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MenuItem, MessageService, PrimeNGConfig } from 'primeng/api';
-import { ProductDto } from '../../../dto/product-dto';
-import { ProductService } from '../../../service/product.service';
-import { BehaviorSubject, Observable } from 'rxjs';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {MenuItem, MessageService, PrimeNGConfig} from 'primeng/api';
+import {ProductDto} from '../../../dto/product-dto';
+import {ProductService} from '../../../service/product.service';
+import {BehaviorSubject, Observable} from 'rxjs';
 import loader from '@angular-devkit/build-angular/src/webpack/plugins/single-test-transform';
-import { HeaderComponent } from '../../../shared/header/header.component';
+import {HeaderComponent} from '../../../shared/header/header.component';
 import {TokenStorageService} from "../../../service/token-storage.service";
 import {Account} from "../../../model/account";
 
@@ -27,17 +27,18 @@ export class HomePageComponent implements OnInit {
     private messageService: MessageService,
     private primengConfig: PrimeNGConfig,
     private tokenStorageService: TokenStorageService
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.items = [
-      { label: 'Computer' },
-      { label: 'Notebook' },
-      { label: 'Accessories' },
-      { label: 'Backpacks' },
-      { label: 'Item' },
+      {label: 'Computer'},
+      {label: 'Notebook'},
+      {label: 'Accessories'},
+      {label: 'Backpacks'},
+      {label: 'Item'},
     ];
-    this.home = { icon: 'pi pi-home', routerLink: '/' };
+    this.home = {icon: 'pi pi-home', routerLink: '/'};
     this.getAllProduct();
     this.primengConfig.ripple = true;
     this.username = this.tokenStorageService.getUser().username;
@@ -60,7 +61,13 @@ export class HomePageComponent implements OnInit {
   }
 
   addToCart(item: ProductDto) {
-    console.log(this.username);
+    // console.log(this.username);
+    // this.tokenStorageService.saveUserCart(item);
+    // this.messageService.add({
+    //   severity: 'success',
+    //   summary: 'Success',
+    //   detail: 'Add successfully',
+    // });
     this.productService.updateCart(item, this.username).subscribe(() => {
       this.messageService.add({
         severity: 'success',

@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Account } from '../model/account';
+import {CartDto} from "../dto/cart-dto";
+import {ProductDto} from "../dto/product-dto";
 
 const TOKEN_KEY = 'auth-token';
 const USER_KEY = 'auth-user';
+const CART = 'cart-user';
 @Injectable({
   providedIn: 'root',
 })
@@ -45,5 +48,22 @@ export class TokenStorageService {
   public saveUserLocal(user: Account) {
     window.localStorage.removeItem(USER_KEY);
     window.localStorage.setItem(USER_KEY, JSON.stringify(user));
+  }
+
+  public saveUserCart(product: ProductDto) {
+    // window.localStorage.removeItem(CART);
+    window.localStorage.setItem(CART, JSON.stringify(product));
+  }
+
+  public getCartList(): ProductDto {
+    if (localStorage.getItem(CART) !== null) {
+      return <ProductDto>localStorage.getItem(CART);
+    } else {
+      return <ProductDto>sessionStorage.getItem(CART);
+    }
+  }
+
+  public removeCartList(): void {
+    window.localStorage.removeItem(CART);
   }
 }

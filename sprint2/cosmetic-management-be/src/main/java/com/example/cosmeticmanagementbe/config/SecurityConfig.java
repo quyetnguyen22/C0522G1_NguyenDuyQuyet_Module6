@@ -114,14 +114,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/api/login/**"
-                        ,"/api/product/list"
+//                        ,"/api/product/list"
+//                        ,"/api/product/**"
                 )
                 .permitAll()
 
                 .and()
                 .authorizeRequests()
-                .antMatchers("api/product/**")
+                .antMatchers("/api/product/**")
                 .access("hasAnyRole('ROLE_ADMIN')")
+//                .access("hasAnyRole('ROLE_USER')")
                 .anyRequest().authenticated()
 
                 .and().cors()

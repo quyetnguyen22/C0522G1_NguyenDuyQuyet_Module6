@@ -6,6 +6,7 @@ import { MessageService, PrimeNGConfig } from 'primeng/api';
 import { Router } from '@angular/router';
 import { ICreateOrderRequest, IPayPalConfig } from 'ngx-paypal';
 import {TokenStorageService} from "../../../service/token-storage.service";
+import {ProductDto} from "../../../dto/product-dto";
 
 declare function cart(): any;
 
@@ -16,6 +17,7 @@ declare function cart(): any;
 })
 export class CartComponent implements OnInit {
   cartList$: Observable<CartDto[]> | undefined;
+  // cartList: ProductDto;
   totalBill: number | undefined;
   payPalConfig: IPayPalConfig;
   username: string;
@@ -37,6 +39,8 @@ export class CartComponent implements OnInit {
     this.primengConfig.ripple = true;
   }
   getAllInCart() {
+    // this.cartList = this.tokenStorageService.getCartList();
+    // console.log(this.cartList);
     this.productService.getCartList(this.username).subscribe((value) => {
       if (value == null) {
         this.router.navigateByUrl('');
@@ -61,7 +65,8 @@ export class CartComponent implements OnInit {
     });
   }
 
-  removeProduct(product: CartDto) {
+  removeProduct(product: ProductDto) {
+    // this.tokenStorageService.removeCartList();
     this.productService.removeProduct(product.id).subscribe((value) => {
       this.ngOnInit();
       this.messageService.add({
@@ -73,75 +78,54 @@ export class CartComponent implements OnInit {
   }
 
   private initConfig(): void {
+
     this.payPalConfig = {
-      currency: 'EUR',
-      clientId: 'sb',
-      createOrderOnClient: (data) =>
-        <ICreateOrderRequest>{
-          intent: 'CAPTURE',
-          purchase_units: [
-            {
-              amount: {
-                currency_code: 'EUR',
-                value: '9.99',
-                breakdown: {
-                  item_total: {
-                    currency_code: 'EUR',
-                    value: '9.99',
-                  },
-                },
-              },
-              items: [
-                {
-                  name: 'Enterprise Subscription',
-                  quantity: '1',
-                  category: 'DIGITAL_GOODS',
-                  unit_amount: {
-                    currency_code: 'EUR',
-                    value: '9.99',
-                  },
-                },
-              ],
-            },
-          ],
-        },
+      currency: 'USD',
+      clientId: 'AcuKQEMia2nn12ZZBn3on0voZf4uFmsrYv-p4jyrDrp5qHACqztRmYTEjKlbvyDujQ63oTG4gPX6wscJ',
       advanced: {
-        commit: 'true',
+        commit: 'true'
       },
       style: {
         label: 'paypal',
-        layout: 'vertical',
+        layout: 'horizontal',
+        size: 'responsive',
+        shape: 'pill',
+        color: 'gold',
+      },
+      createOrderOnClient: (data) => <ICreateOrderRequest>{
+
+        purchase_units: [{
+          amount: {
+            currency_code: 'USD',
+            value: '1',
+            // breakdown: {
+            //   item_total: {
+            //     currency_code: 'EUR',
+            //     value: '9.99'
+            //   }
+            // }
+          },
+          // items: [{
+          //   name: 'Enterprise Subscription',
+          //   quantity: '1',
+          //   category: 'DIGITAL_GOODS',
+          //   unit_amount: {
+          //     currency_code: 'EUR',
+          //     value: '8.99',
+          //   },
+          // }]
+        }]
       },
       onApprove: (data, actions) => {
-        console.log(
-          'onApprove - transaction was approved, but not authorized',
-          data,
-          actions
-        );
-        actions.order.get().then((details: any) => {
-          console.log(
-            'onApprove - you can get full order details inside onApprove: ',
-            details
-          );
-        });
       },
-      // onClientAuthorization: (data) => {
-      //   console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
-      //   this.showSuccess = true;
-      // },
-      // onCancel: (data, actions) => {
-      //   console.log('OnCancel', data, actions);
-      //   this.showCancel = true;
-      //
-      // },
-      // onError: err => {
-      //   console.log('OnError', err);
-      //   this.showError = true;
-      // },
-      // onClick: (data, actions) => {
-      //   console.log('onClick', data, actions);
-      //   this.resetStatus();
-      // }
+      onClientAuthorization: (data) => {
+      },
+      onCancel: (data, actions) => {
+      },
+      onError: err => {
+      },
+      onClick: (data, actions) => {
+      },
     };
   }
 }
