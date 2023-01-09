@@ -1,0 +1,32 @@
+<!--<ng-template pTemplate="content">-->
+  <form [formGroup]="penaltyForm">
+    <div class="p-field">
+      <input type="hidden" formControlName="id"/>
+    </div>
+    <div class="p-field">
+      <label for="name">Name</label><span style="color: red">*</span>
+      <small style="color: red; font-size: 12px" class="ps-2 p-invalid" *ngIf="penaltyForm.controls['name'].hasError('required') &&
+              (penaltyForm.controls['name'].touched || submitted)">Name is required!</small>
+      <input type="text" pInputText id="name" formControlName="name" required autofocus/>
+    </div>
+    <div class="p-field">
+      <label for="dateOfBirth">Date of birth</label><span style="color: red">*</span>
+      <small style="color: red; font-size: 12px" class="ps-2 p-invalid" *ngIf="penaltyForm.controls['dateOfBirth'].hasError('required') &&
+              (penaltyForm.controls['dateOfBirth'].touched || submitted)">Price is required!</small>
+      <input type="date" id="dateOfBirth" formControlName="dateOfBirth"
+                     autofocus/>
+    </div>
+
+    <div class="p-formgrid p-grid">
+      <div class="p-field p-col">
+        <label>Team</label><span style="color: red">*</span>
+        <small style="color: red; font-size: 12px" class="ps-2 p-invalid" *ngIf="penaltyForm.controls['team'].hasError('required') &&
+              (penaltyForm.controls['team'].touched || submitted)">Producer is required!</small>
+        <select formControlName="team" class="form-select">
+          <option value="null">Select rank</option>
+          <option *ngFor="let team of teams" [ngValue]="team">{{team.name}}</option>
+        </select>
+      </div>
+    </div>
+  </form>
+<!--</ng-template>-->

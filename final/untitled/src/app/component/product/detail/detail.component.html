@@ -1,0 +1,46 @@
+<p-toast></p-toast>
+<section class="product-details spad" *ngIf="cosmetic != undefined">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-md-6">
+        <div class="product__details__pic">
+          <div class="product__details__pic__item mt-3 mb-3" style="box-shadow:15px 15px 15px lightblue">
+            <img class="product__details__pic__item--large"
+                 src="{{cosmetic.imageLink}}" alt="">
+          </div>
+          <!--          <div class="product__details__pic__slider owl-carousel">-->
+          <!--            <img data-imgbigurl="../../../assets/img/product/details/product-details-2.jpg.jpg"-->
+          <!--                 src="../../../assets/img/product/details/thumb-1.jpg" alt="">-->
+          <!--            <img data-imgbigurl="../../../assets/img/product/details/product-details-3.jpg.jpg"-->
+          <!--                 src="../../../assets/img/product/details/thumb-2.jpg" alt="">-->
+          <!--            <img data-imgbigurl="../../../assets/img/product/details/product-details-5.jpg.jpg"-->
+          <!--                 src="../../../assets/img/product/details/thumb-3.jpg" alt="">-->
+          <!--            <img data-imgbigurl="../../../assets/img/product/details/product-details-4.jpg"-->
+          <!--                 src="../../../assets/img/product/details/thumb-4.jpg" alt="">-->
+          <!--          </div>-->
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-md-6">
+        <div class="product__details__text">
+          <h3 style="margin-bottom: 5px">{{cosmetic.name | titlecase}}</h3>
+
+          <div class="product__details__price" style="margin-bottom: 10px">
+            {{cosmetic.price | number}} VND
+          </div>
+
+          <p style="margin-bottom: 10px; line-height: 22px">{{cosmetic.description}}</p>
+          <br>
+
+          <a class="primary-btn hover-green ml-2" (click)="addToCart(cosmetic)">
+            Add to cart</a>
+          <ul style="margin-top: 10px; margin-bottom: 5px">
+            <li><b>Producer:</b> <span>{{cosmetic.producer | titlecase}}</span></li>
+            <li><b>Type:</b> <span>{{cosmetic.cosmeticType}}</span></li>
+            <li><b>Delivery:</b> <span>From 02-03 days.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4002b19a-842d-4546-92be-5623443e9378" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/exam/src/main/java/com/example/exam/account/AuthRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exam/src/main/java/com/example/exam/account/AuthResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exam/src/main/java/com/example/exam/account/Role.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exam/src/main/java/com/example/exam/account/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exam/src/main/java/com/example/exam/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exam/src/main/java/com/example/exam/controller/AccountRest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exam/src/main/java/com/example/exam/controller/ProductRestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exam/src/main/java/com/example/exam/dto/ICartDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exam/src/main/java/com/example/exam/dto/IProductDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exam/src/main/java/com/example/exam/dto/ITotalDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exam/src/main/java/com/example/exam/dto/ProductDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exam/src/main/java/com/example/exam/filter/JwtFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exam/src/main/java/com/example/exam/model/Brand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exam/src/main/java/com/example/exam/model/Cart.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exam/src/main/java/com/example/exam/model/CartProduct.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exam/src/main/java/com/example/exam/model/CosmeticType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exam/src/main/java/com/example/exam/model/Images.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exam/src/main/java/com/example/exam/model/Producer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exam/src/main/java/com/example/exam/model/Product.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exam/src/main/java/com/example/exam/repository/ICartRepo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exam/src/main/java/com/example/exam/repository/IProductRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exam/src/main/java/com/example/exam/repository/IRoleRepo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exam/src/main/java/com/example/exam/repository/IUserRepo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exam/src/main/java/com/example/exam/service/ICartService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exam/src/main/java/com/example/exam/service/IProductService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exam/src/main/java/com/example/exam/service/IUserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exam/src/main/java/com/example/exam/service/impl/CartService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exam/src/main/java/com/example/exam/service/impl/CustomUserDetailService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exam/src/main/java/com/example/exam/service/impl/ProductService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exam/src/main/java/com/example/exam/util/JwtUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final-fe/src/app/component/account/account-routing.module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final-fe/src/app/component/account/account.module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final-fe/src/app/component/account/log-in-log-out/log-in-log-out.component.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final-fe/src/app/component/account/log-in-log-out/log-in-log-out.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final-fe/src/app/component/account/log-in-log-out/log-in-log-out.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final-fe/src/app/component/home/home-page/home-page.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final-fe/src/app/component/home/home-page/home-page.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final-fe/src/app/component/home/home-page/home-page.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final-fe/src/app/component/home/home-routing.module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final-fe/src/app/component/home/home.module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final-fe/src/app/component/product/cart/cart.component.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final-fe/src/app/component/product/cart/cart.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final-fe/src/app/component/product/cart/cart.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final-fe/src/app/component/product/detail/detail.component.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final-fe/src/app/component/product/detail/detail.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final-fe/src/app/component/product/detail/detail.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final-fe/src/app/component/product/product-routing.module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final-fe/src/app/component/product/product.module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final-fe/src/app/component/product/women/women.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final-fe/src/app/component/product/women/women.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final-fe/src/app/component/product/women/women.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final-fe/src/app/dto/brand-dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final-fe/src/app/dto/cart-dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final-fe/src/app/dto/cosmetic-type-dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final-fe/src/app/dto/producer-dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final-fe/src/app/dto/product-dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final-fe/src/app/model/account.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final-fe/src/app/model/data-content.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final-fe/src/app/service/auth.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final-fe/src/app/service/authentication.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final-fe/src/app/service/product.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final-fe/src/app/service/token-storage.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final-fe/src/app/shared/footer/footer.component.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final-fe/src/app/shared/footer/footer.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final-fe/src/app/shared/footer/footer.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final-fe/src/app/shared/header/header.component.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final-fe/src/app/shared/header/header.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final-fe/src/app/shared/header/header.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final-fe/src/assets/products.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../film/cinema-management-angular-9" beforeDir="false" afterPath="$PROJECT_DIR$/../../film/cinema-management-angular-9" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../film_array/cinema-management-angular-9" beforeDir="false" afterPath="$PROJECT_DIR$/../../film_array/cinema-management-angular-9" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../project/cinema-management-angular-9" beforeDir="false" afterPath="$PROJECT_DIR$/../../project/cinema-management-angular-9" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../project/cinema-management-api" beforeDir="false" afterPath="$PROJECT_DIR$/../../project/cinema-management-api" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../sprint2/cosmetic-management/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../sprint2/cosmetic-management/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../sprint2/cosmetic-management/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../sprint2/cosmetic-management/package.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="2JJd8Ziq5g7jeUEZ3eGm1F0Y5V6" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/CodeGym/C0522G1_NguyenDuyQuyet_Module6/final/final-fe",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4002b19a-842d-4546-92be-5623443e9378" name="Changes" comment="" />
+      <created>1671799960982</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1671799960982</updated>
+      <workItem from="1671799962464" duration="37000" />
+      <workItem from="1671845760818" duration="649000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

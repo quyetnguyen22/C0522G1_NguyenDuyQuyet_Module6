@@ -1,0 +1,146 @@
+<p-toast></p-toast>
+
+<div class="card container mt-3 mb-3 p-0">
+  <p-toolbar styleClass="p-mb-4">
+    <ng-template pTemplate="left">
+      <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mx-2"
+              (click)="openNew()"></button>
+      <button pButton pRipple icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedPenalties()"
+              [disabled]="!selectedPenalties || !selectedPenalties.length"></button>
+    </ng-template>
+
+  </p-toolbar>
+
+  <p-table *ngIf="penalties != null && totalElements != null" #dt [value]="penalties"
+           [(selection)]="selectedPenalties" [rowHover]="true" dataKey="id" responsiveLayout="scroll"
+           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+           [showCurrentPageReport]="true">
+    <ng-template pTemplate="caption">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        <span class="p-0 m-0">Manage Products</span>
+        <span class="p-input-icon-left" style="left: 73%">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" [(ngModel)]="name" (change)="getPenalties()"
+                           placeholder="Search..."/>
+          <i class="pi pi-times" style="right: 3%" (click)="resetSearchInput()"></i>
+                </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 3rem">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th pSortableColumn="name">No
+          <!--          <p-sortIcon field="name"></p-sortIcon>-->
+        </th>
+        <th pSortableColumn="price">Penalty code
+          <!--          <p-sortIcon field="price"></p-sortIcon>-->
+        </th>
+        <th pSortableColumn="category">Player name
+          <!--          <p-sortIcon field="category"></p-sortIcon>-->
+        </th>
+        <th pSortableColumn="category">Team name
+          <!--          <p-sortIcon field="category"></p-sortIcon>-->
+        </th>
+        <th pSortableColumn="category">Corner
+          <!--          <p-sortIcon field="category"></p-sortIcon>-->
+        </th>
+        <th pSortableColumn="category">Result
+          <!--          <p-sortIcon field="category"></p-sortIcon>-->
+        </th>
+        <!--        <th pSortableColumn="rating">Reviews-->
+        <!--          <p-sortIcon field="rating"></p-sortIcon>-->
+        <!--        </th>-->
+        <!--        <th pSortableColumn="inventoryStatus">Status-->
+        <!--          <p-sortIcon field="inventoryStatus"></p-sortIcon>-->
+        <!--        </th>-->
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-penalty>
+      <tr>
+        <td>
+          <p-tableCheckbox [value]="penalty"></p-tableCheckbox>
+        </td>
+        <td>{{penalty.id}}
+        </td>
+        <td>{{penalty.penaltyCode | slice: 0:13}}
+          <span *ngIf="penalty.penaltyCode.length > 14">.....{{penalty.name | slice: 70}}</span>
+        </td>
+        <td>{{penalty.playerName}}
+        </td>
+        <td>{{penalty.teamName}}</td>
+        <td>{{penalty.corner}}</td>
+        <td>{{penalty.result}}</td>
+
+        <td>
+<!--          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2 mx-2"-->
+<!--                  (click)="editProduct(product)"></button>-->
+          <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                  (click)="deletePenalty(penalty)"></button>
+        </td>
+      </tr>
+    </ng-template>
+    <!--        <ng-template pTemplate="summary">-->
+    <!--          <div class="p-d-flex p-ai-center p-jc-between">-->
+    <!--            In total there are {{products ? products.length : 0 }} products.-->
+    <!--          </div>-->
+    <!--        </ng-template>-->
+  </p-table>
+  <p-paginator *ngIf="totalElements != null" [rows]="10" [totalRecords]="totalElements"
+               (onPageChange)="goToPage($event)" [showJumpToPageInput]="true"></p-paginator>
+</div>
+
+<p-dialog [(visible)]="dialog" [style]="{width: '450px'}" header="Product Details" [modal]="true"
+          styleClass="p-fluid">
+  <ng-template pTemplate="content">
+    <form [formGroup]="penaltyForm">
+      <div class="p-field">
+        <input type="hidden" formControlName="id"/>
+      </div>
+      <div class="p-field">
+        <label for="name">Name</label><span style="color: red">*</span>
+        <small style="color: red; font-size: 12px" class="ps-2 p-invalid" *ngIf="penaltyForm.controls['name'].hasError('required') &&
+              (penaltyForm.controls['name'].touched || submitted)">Name is required!</small>
+        <small style="color: red; font-size: 12px" class="ps-2 p-invalid" *ngIf="penaltyForm.controls['name'].hasError('pattern') &&
+              (penaltyForm.controls['name'].touched || submitted)">Name must be capital type!</small>
+        <input type="text" pInputText id="name" formControlName="name" required autofocus/>
+      </div>
+      <div class="p-field">
+        <label for="playerCode">Player code</label><span style="color: red">*</span>
+        <small style="color: red; font-size: 12px" class="ps-2 p-invalid" *ngIf="penaltyForm.controls['playerCode'].hasError('required') &&
+              (penaltyForm.controls['playerCode'].touched || submitted)">Player code is required!</small>
+        <input type="text" pInputText id="playerCode" formControlName="playerCode" required autofocus/>
+      </div>
+      <div class="p-field">
+        <label for="dateOfBirth">Date of birth</label><span style="color: red">*</span>
+        <small style="color: red; font-size: 12px" class="ps-2 p-invalid" *ngIf="penaltyForm.controls['dateOfBirth'].hasError('required') &&
+              (penaltyForm.controls['dateOfBirth'].touched || submitted)">Date is required!</small>
+        <small style="color: red; font-size: 12px" class="ps-2 p-invalid" *ngIf="penaltyForm.controls['dateOfBirth'].hasError('invalidAge') &&
+              (penaltyForm.controls['dateOfBirth'].touched || submitted)">Age must be greater than 16!</small>
+        <input id="dateOfBirth" formControlName="dateOfBirth" type="date" pInputText
+                       autofocus/>
+      </div>
+
+      <div class="p-formgrid p-grid">
+        <div class="p-field p-col">
+          <label>Team</label><span style="color: red">*</span>
+          <small style="color: red; font-size: 12px" class="ps-2 p-invalid" *ngIf="penaltyForm.controls['team'].hasError('required') &&
+              (penaltyForm.controls['team'].touched || submitted)">Team is required!</small>
+          <select formControlName="team" class="form-select">
+            <option value="">Select team</option>
+            <option *ngFor="let team of teams" [ngValue]="team">{{team.name}}</option>
+          </select>
+        </div>
+      </div>
+    </form>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+    <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="savePlayer()"></button>
+  </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
