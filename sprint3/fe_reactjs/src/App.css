@@ -1,0 +1,469 @@
+
+
+#login-dp {
+    min-width: 250px;
+    padding: 14px 14px 0;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, .8);
+}
+
+#login-dp .help-block {
+    font-size: 12px
+}
+
+#login-dp .bottom {
+    background-color: rgba(255, 255, 255, .8);
+    border-top: 1px solid #ddd;
+    clear: both;
+    padding: 14px;
+}
+
+#login-dp .social-buttons {
+    margin: 12px 0
+}
+
+#login-dp .social-buttons a {
+    width: 49%;
+}
+
+#login-dp .form-group {
+    margin-bottom: 10px;
+}
+
+.btn-fb {
+    color: #fff;
+    background-color: #3b5998;
+}
+
+.btn-fb:hover {
+    color: #fff;
+    background-color: #496ebc
+}
+
+.btn-tw {
+    color: #fff;
+    background-color: #55acee;
+}
+
+.btn-tw:hover {
+    color: #fff;
+    background-color: #59b5fa;
+}
+
+@media (max-width: 768px) {
+    #login-dp {
+        background-color: inherit;
+        color: #fff;
+    }
+
+    #login-dp .bottom {
+        background-color: inherit;
+        border-top: 0 none;
+    }
+}
+
+/*fsddf*/
+
+.colorA {
+    color: black;
+}
+.colorA:hover{
+    color: red;
+}
+.nav-header {
+    background: white;
+    font-size: 18px;
+    font-family: 'Times New Roman';
+    font-weight: bold;
+    color: black;
+}
+
+.nav-header a {
+    color: black;
+}
+.nav-header a:hover {
+    border-radius: 10px;
+    background-color: white;
+    color: red;
+}
+
+.colorB a {
+    color: orange;
+}
+
+.colorB :hover {
+    color: black;
+}
+.cartHeader{
+    background-color: orange;
+    border-radius: 10px;
+    height: 50px;
+    border: none;
+}
+.cart {
+    color: black;
+}
+.cart:hover {
+   color: red;
+}
+
+
+/* Slider */
+#slider{
+    width:100%;
+    height:500px;
+    position:relative;
+    overflow:hidden;
+}
+@keyframes load{
+    from{left:-100%;}
+    to{left:0;}
+}
+.slides{
+    width:400%;
+    height:100%;
+    position:relative;
+    -webkit-animation:slide 30s infinite;
+    -moz-animation:slide 30s infinite;
+    animation:slide 30s infinite;
+}
+.slider{
+    width:25%;
+    height:100%;
+    float:left;
+    position:relative;
+    z-index:1;
+    overflow:hidden;
+}
+.slide img{
+    width:100%;
+    height:100%;
+}
+.slide img{
+    width:100%;
+    height:100%;
+}
+.image{
+    width:100%;
+    height:100%;
+}
+.image img{
+    width:100%;
+    height:auto;
+}
+
+/* Legend */
+.legend{
+    border:500px solid transparent;
+    border-left:800px solid rgba(52, 73, 94, .7);
+    border-bottom:0;
+    position:absolute;
+    bottom:0;
+}
+
+/* Contents */
+.content{
+    width:100%;
+    height:100%;
+    position:absolute;
+    overflow:hidden;
+}
+.content-txt{
+    width:400px;
+    height:150px;
+    float:left;
+    position:relative;
+    top:300px;
+    -webkit-animation:content-s 7.5s infinite;
+    -moz-animation:content-s 7.5s infinite;
+    animation:content-s 7.5s infinite;
+}
+.content-txt h1{
+    font-family:Arial;
+    text-transform:uppercase;
+    font-size:24px;
+    color:#fff;
+    text-align:left;
+    margin-left:30px;
+    padding-bottom:10px;
+}
+.content-txt h2{
+    font-family:arial;
+    font-weight:normal;
+    font-size:14px;
+    font-style:italic;
+    color:#fff;
+    text-align:left;
+    margin-left:30px;
+}
+
+/*ul*/
+.ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+}
+
+.ul .booking-card1 {
+    float: left;
+    position: relative;
+    width: 300px;
+    display: flex;
+    flex: 0 0 125px;
+    flex-direction: column;
+    margin: 20px;
+    margin-bottom: 30px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-position: center center;
+    background-size: cover;
+    text-align: center;
+    color: white;
+    transition: 0.3s;
+}
+.text-navbar{
+    font-size: 18px;
+}
+
+.ul .booking-card1::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(10, 72, 112, 0);
+    transition: 0.3s;
+}
+
+.ul .booking-card1 .book-container {
+    height: 200px;
+}
+
+.ul .booking-card1 .book-container .content {
+    position: relative;
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    transform: translateY(-200px);
+    transition: 0.3s;
+}
+
+.ul .booking-card1 .book-container .content .btn {
+    border: 3px solid white;
+    padding: 10px 15px;
+    background: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.3em;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.ul .booking-card1 .book-container .content .btn:hover {
+    background: white;
+    border: 0px solid white;
+    color: #0a4870;
+}
+
+.ul .booking-card1 .informations-container {
+    flex: 1 0 auto;
+    padding: 20px;
+    /*background: #f0f0f0;*/
+    transform: translateY(206px);
+    transition: 0.3s;
+}
+
+.ul .booking-card1 .informations-container .title {
+    position: relative;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.ul .booking-card1 .informations-container .title::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    width: 50px;
+    margin: auto;
+    background: orange;
+}
+
+.ul .booking-card1 .informations-container .price {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.ul .booking-card1 .informations-container .price .icon {
+    margin-right: 10px;
+}
+
+.ul .booking-card1 .informations-container .more-information {
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.ul .booking-card1 .informations-container .more-information .info-and-date-container {
+    display: flex;
+}
+
+.ul .booking-card1 .informations-container .more-information .info-and-date-container .box {
+    flex: 1 0;
+    padding: 15px;
+    margin-top: 20px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    background: white;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.ul .booking-card1 .informations-container .more-information .info-and-date-container .box .icon {
+    margin-bottom: 5px;
+}
+
+.ul .booking-card1 .informations-container .more-information .info-and-date-container .box.info {
+    color:  #0a4870;
+    margin-right: 10px;
+}
+
+.ul .booking-card1 .informations-container .more-information .disclaimer {
+    margin-top: 20px;
+    font-size: 0.8em;
+    color: #0a4870;
+}
+
+.ul .booking-card1:hover::before {
+    background: rgba(10, 72, 112, 0.6);
+}
+
+.ul .booking-card1:hover .book-container .content {
+    opacity: 1;
+    transform: translateY(0px);
+}
+
+.ul .booking-card1:hover .informations-container {
+    transform: translateY(0px);
+}
+
+.ul .booking-card1:hover .informations-container .more-information {
+    opacity: 1;
+}
+
+​
+
+@media (max-width: 768px) {
+    .ul .booking-card::before {
+        background: rgba(10, 72, 112, 0.6);
+    }
+
+    .ul .booking-card .book-container .content {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+
+    .ul .booking-card .informations-container {
+        transform: translateY(0px);
+    }
+
+    .ul .booking-card .informations-container .more-information {
+        opacity: 1;
+    }
+}
+/*link hover*/
+.ul {
+    list-style: none;
+}
+
+body {
+    line-height: 1.2;
+    color: #333;
+}
+
+#wrapper {
+    display: flex;
+}
+
+.ul#main-menu {
+    display: flex;
+    padding: 0;
+
+}
+
+.ul#main-menu h5 {
+    display: block;
+    padding: 10px 0px;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    position: relative;
+}
+
+.ul#main-menu li {
+    padding: 0 20px;
+}
+
+.ul#main-menu h5:after {
+    font-size: 20px;
+    content: "";
+    height: 5px;
+    width: 0;
+    background-color: red;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+
+}
+
+.ul#main-menu h5:hover::after {
+    width: 100%;
+
+}
+
+.navbar {
+    padding: 0;
+}
+
+#info{
+    margin-left: 10px;
+}
+
+/*ổ trợ card*/
+.card-body a{
+    color: black;
+    text-decoration: none;
+}
+.card-body b{
+    color: red;
+}
+.card-body a:hover {
+    color: orange;
+}
+.input-group {
+    flex-wrap: nowrap;
+}
+/*login*/
+@media (min-width: 1025px) {
+    .h-custom-2 {
+        height: 100%;
+    }
+}
+/*******/

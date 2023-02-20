@@ -40,7 +40,6 @@ public class Product {
 
     public Product() {
     }
-
     public Integer getId() {
         return id;
     }
